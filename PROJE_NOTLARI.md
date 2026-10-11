@@ -10,7 +10,7 @@ Kullanıcı "bitiriyoruz" dedi. Döndüğünde buradan devam edilecek.
 - Sonra kullanıcının getirdiği Uiverse/CodePen bileşenleri tek tek siteye uyarlandı: sayaç kartı hover efekti, harf harf parlayan başlıklar, ikonlu menü butonları, puan kartları (YKS + KPSS), bilgi/uyarı kutucukları, açılır seçim menüsü, ortak yükleme animasyonu, sol üstte "+" açılır menü (hamburger ikonlu), koyu tema anahtarı, 3B bulut arka planı, Telma yazı tipi, giriş/kayıt kartı, Number Flow sayaçları ve sayı girişleri.
 - Arka plan şu an **3B bulutlar** (`bulut3d.js`). Önceki **deniz sahnesi** yedekte (`yedekler/`), kullanıcı "beğenmezsem buna döneriz" dedi.
 - Oturumun sonunda: telefon düzeni (üst kısım 2 satır, sayfa butonları 2x2, oda/filtre butonları tek satır), telefonda test (aynı Wi-Fi, `http://192.168.8.124:8000`), otomatik doldurma rengi düzeltmesi, giriş yapınca sağ üstte "Çıkış yap", sohbetteki çıkış butonu kaldırıldı + hoş geldin ortalandı, menü açıkken arka plan bulanıklaşıyor, ana sayfada son satırdaki kartlar ortalanıyor. Sürüm etiketi şu an `?v=34`.
-- **Değişiklikler henüz commit edilmedi.** Kullanıcıya commit önerildi, cevap bekleniyor. Push'u her zaman kullanıcı yapar.
+- ✅ Bu oturumun değişiklikleri kullanıcı tarafından commit edilip GitHub'a gönderildi (commit `912e510`, 2026-10-11). Push'u her zaman kullanıcı yapar.
 
 **Sitenin şu anki durumu** (`C:\Users\minet\OneDrive\Masaüstü\SinavBulutu\`; eski yol `C:\Users\pc\Desktop\sinav-sayaci\` artık geçersiz):
 - ✅ Sayaçlar, Puan Hesapla, Kaynaklar, Topluluk + Gizlilik, Hakkımızda, İletişim, Kullanım Koşulları sayfaları.
@@ -19,7 +19,7 @@ Kullanıcı "bitiriyoruz" dedi. Döndüğünde buradan devam edilecek.
 - ⏳ Site henüz internette değil. Yerelde `start.bat` veya `python -m http.server 8000` → http://localhost:8000
 
 **Döndüğünde sırayla yapılacaklar:**
-1. Commit sorusunu tekrar sor (bu oturumdaki her şey commit'siz).
+1. `git status` ile kontrol et; son durumda her şey GitHub'daydı.
 2. Kullanıcının bekleyen kararları: 3B bulutlar mı deniz sahnesi mi? Beyaz yazılara koyu gölge eklensin mi (bulutun üstünde okunmuyor, telefonda daha belirgin)? Açık temada parlayan başlıklar soluk. (Koyu temadaki filtre butonları düzeltildi.)
    Doğrulanmayanlar (kullanıcı denemeli): sağ üst "Çıkış yap" gerçek hesapla; otomatik doldurmada kullanıcı adı alanına e-posta dolmaması; sayı girişlerinin gerçek tarayıcıdaki akıcılığı; 3B bulutların açılış efekti ve telefondaki performansı.
 3. Topluluk testi: e-posta onayı, giriş, mesaj gönderme (yeni giriş kartıyla birlikte denenmeli).
