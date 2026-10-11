@@ -66,15 +66,21 @@ $("form-kayit").addEventListener("submit", async e => {
     return bildir("Kullanıcı adı 3-20 karakter olmalı; harf, rakam ve _ kullanabilirsin.");
   }
 
-  const { data: varMi } = await sb
-    .from("profiller").select("id").eq("kullanici_adi", kullaniciAdi).maybeSingle();
-  if (varMi) return bildir("Bu kullanıcı adı alınmış, başka bir tane dene.");
+  Yukleme.goster("Hesabın açılıyor");
+  let data, error;
+  try {
+    const { data: varMi } = await sb
+      .from("profiller").select("id").eq("kullanici_adi", kullaniciAdi).maybeSingle();
+    if (varMi) return bildir("Bu kullanıcı adı alınmış, başka bir tane dene.");
 
-  const { data, error } = await sb.auth.signUp({
-    email: eposta,
-    password: sifre,
-    options: { data: { kullanici_adi: kullaniciAdi } }
-  });
+    ({ data, error } = await sb.auth.signUp({
+      email: eposta,
+      password: sifre,
+      options: { data: { kullanici_adi: kullaniciAdi } }
+    }));
+  } finally {
+    Yukleme.gizle();
+  }
 
   if (error) return bildir(turkce(error));
   if (!data.session) {
@@ -85,19 +91,30 @@ $("form-kayit").addEventListener("submit", async e => {
 // ---------- Giriş yap ----------
 $("form-giris").addEventListener("submit", async e => {
   e.preventDefault();
-  const { error } = await sb.auth.signInWithPassword({
-    email: $("giris-eposta").value.trim(),
-    password: $("giris-sifre").value
-  });
+  Yukleme.goster("Giriş yapılıyor");
+  let error;
+  try {
+    ({ error } = await sb.auth.signInWithPassword({
+      email: $("giris-eposta").value.trim(),
+      password: $("giris-sifre").value
+    }));
+  } finally {
+    Yukleme.gizle();
+  }
   if (error) bildir(turkce(error));
 });
 
 // ---------- Çıkış ----------
-$("cikis").addEventListener("click", () => sb.auth.signOut());
+
+// Sağ üstteki "Çıkış yap" (herhangi bir sayfadan) buraya ?cikis=1 ile gelir
+if (new URLSearchParams(location.search).get("cikis") === "1") {
+  sb.auth.signOut().finally(() => history.replaceState(null, "", "topluluk.html"));
+}
 
 // ---------- Oturum değişince ekranı ayarla ----------
 sb.auth.onAuthStateChange(async (_olay, oturum) => {
   kullanici = oturum ? oturum.user : null;
+  if (window.HesapDurumu) HesapDurumu.ayarla(!!kullanici); // sağ üst: Giriş yap ↔ Çıkış yap
   girisAlani.hidden = !!kullanici;
   sohbetAlani.hidden = !kullanici;
 
@@ -162,7 +179,7 @@ function mesajEkle(m) {
 
 async function odaAc(oda) {
   seciliOda = oda;
-  mesajListesi.innerHTML = "<p class='bos'>Yükleniyor...</p>";
+  mesajListesi.innerHTML = Yukleme.kutuIcin("Mesajlar yükleniyor");
 
   const { data, error } = await sb
     .from("mesajlar")

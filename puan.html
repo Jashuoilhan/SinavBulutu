@@ -7,7 +7,15 @@
   <meta name="description" content="YKS (TYT, AYT, SAY, EA, SÖZ, DİL) ve KPSS (Lisans P3, Önlisans P93, Ortaöğretim P94) puan hesaplama. Doğru ve yanlışlarını gir, tahmini puanını öğren.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <!-- Site adı yazı tipi: Telma (Fontshare, ticari kullanım ücretsiz) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=telma@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=35">
+  <script src="tema.js?v=35"></script>
+  <script src="yukleme.js?v=35"></script>
+  <script src="secim.js?v=35"></script>
+  <script src="baslik.js?v=35"></script>
+  <script src="menu.js?v=35"></script>
+  <script src="bulut3d.js?v=35"></script>
   <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
 </head>
 <body>
@@ -20,12 +28,38 @@
   </div>
 
   <header>
-    <a href="index.html" class="logo">☁️ Sınav Bulutu</a>
+    <div class="logo-alani">
+    <a href="index.html" class="logo">Sınav Bulutu ☁️</a>
+    <!-- Açılır menü: Uiverse.io'dan uyarlandı. Üzerine gelince açılır, butona tıklayınca açılır/kapanır (menu.js). -->
+    <div class="acilir-menu" role="navigation" aria-label="Diğer sayfalar">
+      <button type="button" class="am-dugme" aria-label="Diğer sayfalar" aria-expanded="false">
+        <svg viewBox="0 0 32 32" class="hamburger-ikon" aria-hidden="true"><path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/><path class="line" d="M7 16 27 16"/></svg>
+      </button>
+      <div class="am-liste">
+        <a href="hakkimizda.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+          <span class="am-yazi">Hakkımızda</span>
+        </a>
+        <a href="iletisim.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span>
+          <span class="am-yazi">İletişim</span>
+        </a>
+        <a href="gizlilik.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>
+          <span class="am-yazi">Gizlilik Politikası</span>
+        </a>
+        <a href="kullanim-kosullari.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+          <span class="am-yazi">Kullanım Koşulları</span>
+        </a>
+      </div>
+    </div>
+  </div>
     <nav>
-      <a href="index.html">Sayaçlar</a>
-      <a href="puan.html" class="aktif">Puan Hesapla</a>
-      <a href="kaynaklar.html">Kaynaklar</a>
-      <a href="topluluk.html">Topluluk</a>
+      <a href="index.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">⏳</span><span class="button__icon-svg button__icon-svg--copy">⏳</span></span>Sayaçlar</a>
+      <a href="puan.html" class="button aktif"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">🧮</span><span class="button__icon-svg button__icon-svg--copy">🧮</span></span>Puan Hesapla</a>
+      <a href="kaynaklar.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">📚</span><span class="button__icon-svg button__icon-svg--copy">📚</span></span>Kaynaklar</a>
+      <a href="topluluk.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">💬</span><span class="button__icon-svg button__icon-svg--copy">💬</span></span>Topluluk</a>
     </nav>
     <div class="hesap-butonlari">
       <a href="topluluk.html?mod=giris" class="hesap-giris">Giriş yap</a>
@@ -46,23 +80,47 @@
 
     <!-- ============ YKS ============ -->
     <section id="yks-bolum">
-      <div class="kutu">
+      <!-- Kartlar: Uiverse.io kartından uyarlandı. Tıklayınca alttaki panel açılır. -->
+      <div class="puan-kartlari">
+        <button type="button" class="puan-kart" data-panel="panel-tyt" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">Temel Yeterlilik Testi</span>
+          <span class="pk-yazi">TYT</span>
+        </button>
+        <button type="button" class="puan-kart" data-panel="panel-ayt" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">Alan Yeterlilik Testleri</span>
+          <span class="pk-yazi">AYT</span>
+        </button>
+        <button type="button" class="puan-kart" data-panel="panel-ydt" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">Yabancı Dil Testi</span>
+          <span class="pk-yazi">YDT</span>
+        </button>
+        <button type="button" class="puan-kart" data-panel="panel-obp" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">Diploma Notu</span>
+          <span class="pk-yazi">OBP</span>
+        </button>
+      </div>
+
+      <div class="kutu puan-panel" id="panel-tyt" hidden>
         <h2>📘 TYT</h2>
         <div class="test-tablo" id="tablo-tyt"></div>
       </div>
 
-      <div class="kutu">
+      <div class="kutu puan-panel" id="panel-ayt" hidden>
         <h2>📗 AYT</h2>
         <p class="kucuk-not">Sadece girdiğin testleri doldur, boş kalanlar 0 sayılır.</p>
         <div class="test-tablo" id="tablo-ayt"></div>
       </div>
 
-      <div class="kutu">
+      <div class="kutu puan-panel" id="panel-ydt" hidden>
         <h2>🌍 YDT</h2>
         <div class="test-tablo" id="tablo-ydt"></div>
       </div>
 
-      <div class="kutu">
+      <div class="kutu puan-panel" id="panel-obp" hidden>
         <h2>🎓 Diploma notu (OBP)</h2>
         <div class="obp-satir">
           <label>Diploma notu (50-100)
@@ -77,16 +135,34 @@
       <div class="kutu sonuc-kutu">
         <h2>📊 Sonuçlar</h2>
         <div class="sonuc-tablo" id="yks-sonuc"></div>
-        <p class="kucuk-not" id="yks-uyari"></p>
+        <div class="uyari-listesi" id="yks-uyari"></div>
       </div>
     </section>
 
     <!-- ============ KPSS ============ -->
     <section id="kpss-bolum" hidden>
-      <div class="kutu">
-        <h2>🏛️ Düzey ve yıl</h2>
+      <div class="puan-kartlari">
+        <button type="button" class="puan-kart" data-panel="panel-kpss" data-duzey="lisans" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">KPSS Lisans (P1, P2, P3)</span>
+          <span class="pk-yazi">Lisans</span>
+        </button>
+        <button type="button" class="puan-kart" data-panel="panel-kpss" data-duzey="onlisans" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">KPSS Önlisans (P93)</span>
+          <span class="pk-yazi">Önlisans</span>
+        </button>
+        <button type="button" class="puan-kart" data-panel="panel-kpss" data-duzey="ortaogretim" aria-expanded="false">
+          <span class="pk-blob pk-ust"></span>
+          <span class="pk-blob pk-alt">KPSS Ortaöğretim (P94)</span>
+          <span class="pk-yazi">Ortaöğretim</span>
+        </button>
+      </div>
+
+      <div class="kutu puan-panel" id="panel-kpss" hidden>
+        <h2 id="kpss-panel-baslik">🏛️ KPSS</h2>
         <div class="obp-satir">
-          <label>Düzey
+          <label hidden>Düzey
             <select id="kpss-duzey">
               <option value="lisans">Lisans (P1, P2, P3)</option>
               <option value="onlisans">Önlisans (P93)</option>
@@ -98,10 +174,6 @@
           </label>
         </div>
         <p class="kucuk-not" id="kpss-veri-not"></p>
-      </div>
-
-      <div class="kutu">
-        <h2>✏️ Doğru ve yanlışlar</h2>
         <div class="test-tablo" id="tablo-kpss"></div>
       </div>
 
@@ -136,7 +208,10 @@
     © 2026 Sınav Bulutu — Başarılar dileriz!
   </footer>
 
-  <script src="puan-verileri.js"></script>
-  <script src="puan.js"></script>
+  <!-- Sayı alanları: Number Flow (MIT) + ortak sayı girişi -->
+  <script type="module">import "https://esm.sh/number-flow@0.6.2";</script>
+  <script src="sayi-girdi.js?v=35"></script>
+  <script src="puan-verileri.js?v=35"></script>
+  <script src="puan.js?v=35"></script>
 </body>
 </html>

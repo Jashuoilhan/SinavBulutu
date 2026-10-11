@@ -7,7 +7,15 @@
   <meta name="description" content="YKS, KPSS ve ALES öğrencileriyle sohbet et, soru sor, birbirinize yardım edin.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <!-- Site adı yazı tipi: Telma (Fontshare, ticari kullanım ücretsiz) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=telma@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=35">
+  <script src="tema.js?v=35"></script>
+  <script src="yukleme.js?v=35"></script>
+  <script src="secim.js?v=35"></script>
+  <script src="baslik.js?v=35"></script>
+  <script src="menu.js?v=35"></script>
+  <script src="bulut3d.js?v=35"></script>
   <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
 </head>
 <body>
@@ -20,12 +28,38 @@
   </div>
 
   <header>
-    <a href="index.html" class="logo">☁️ Sınav Bulutu</a>
+    <div class="logo-alani">
+    <a href="index.html" class="logo">Sınav Bulutu ☁️</a>
+    <!-- Açılır menü: Uiverse.io'dan uyarlandı. Üzerine gelince açılır, butona tıklayınca açılır/kapanır (menu.js). -->
+    <div class="acilir-menu" role="navigation" aria-label="Diğer sayfalar">
+      <button type="button" class="am-dugme" aria-label="Diğer sayfalar" aria-expanded="false">
+        <svg viewBox="0 0 32 32" class="hamburger-ikon" aria-hidden="true"><path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/><path class="line" d="M7 16 27 16"/></svg>
+      </button>
+      <div class="am-liste">
+        <a href="hakkimizda.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+          <span class="am-yazi">Hakkımızda</span>
+        </a>
+        <a href="iletisim.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span>
+          <span class="am-yazi">İletişim</span>
+        </a>
+        <a href="gizlilik.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>
+          <span class="am-yazi">Gizlilik Politikası</span>
+        </a>
+        <a href="kullanim-kosullari.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+          <span class="am-yazi">Kullanım Koşulları</span>
+        </a>
+      </div>
+    </div>
+  </div>
     <nav>
-      <a href="index.html">Sayaçlar</a>
-      <a href="puan.html">Puan Hesapla</a>
-      <a href="kaynaklar.html">Kaynaklar</a>
-      <a href="topluluk.html" class="aktif">Topluluk</a>
+      <a href="index.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">⏳</span><span class="button__icon-svg button__icon-svg--copy">⏳</span></span>Sayaçlar</a>
+      <a href="puan.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">🧮</span><span class="button__icon-svg button__icon-svg--copy">🧮</span></span>Puan Hesapla</a>
+      <a href="kaynaklar.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">📚</span><span class="button__icon-svg button__icon-svg--copy">📚</span></span>Kaynaklar</a>
+      <a href="topluluk.html" class="button aktif"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">💬</span><span class="button__icon-svg button__icon-svg--copy">💬</span></span>Topluluk</a>
     </nav>
     <div class="hesap-butonlari">
       <a href="topluluk.html?mod=giris" class="hesap-giris">Giriş yap</a>
@@ -46,34 +80,54 @@
     </div>
 
     <!-- GİRİŞ / KAYIT -->
-    <div class="kutu hesap-kutu" id="giris-alani">
-      <div class="sekmeler">
-        <button class="sekme aktif" data-mod="giris">Giriş yap</button>
-        <button class="sekme" data-mod="kayit">Hesap aç</button>
+    <!-- Giriş / kayıt kartı: Uiverse.io login kartından uyarlandı -->
+    <div class="hesap-kart" id="giris-alani">
+      <div class="hesap-kart-ic">
+        <form id="form-giris" class="hk-form">
+          <p class="hk-baslik">Giriş yap</p>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"/></svg>
+            <input type="email" id="giris-eposta" class="hk-girdi" placeholder="E-posta" aria-label="E-posta" required autocomplete="email">
+          </div>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+            <input type="password" id="giris-sifre" class="hk-girdi" placeholder="Şifre" aria-label="Şifre" required autocomplete="current-password">
+          </div>
+          <div class="hk-butonlar">
+            <button type="submit" class="hk-buton">Giriş yap</button>
+            <button type="button" class="hk-buton ikincil sekme" data-mod="kayit">Hesap aç</button>
+          </div>
+        </form>
+
+        <form id="form-kayit" class="hk-form" hidden>
+          <p class="hk-baslik">Hesap aç</p>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+            <input type="text" id="kayit-ad" class="hk-girdi" placeholder="Kullanıcı adı (ör: tyt_avcisi)" aria-label="Kullanıcı adı" required maxlength="20" autocomplete="nickname">
+          </div>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"/></svg>
+            <input type="email" id="kayit-eposta" class="hk-girdi" placeholder="E-posta" aria-label="E-posta" required autocomplete="email">
+          </div>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+            <input type="password" id="kayit-sifre" class="hk-girdi" placeholder="Şifre (en az 6 karakter)" aria-label="Şifre" required minlength="6" autocomplete="new-password">
+          </div>
+          <p class="kayit-onay">Hesap açarak <a href="kullanim-kosullari.html" target="_blank">Kullanım Koşulları</a>'nı ve <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a>'nı kabul etmiş olursun.</p>
+          <div class="hk-butonlar">
+            <button type="submit" class="hk-buton">Hesap aç</button>
+            <button type="button" class="hk-buton ikincil sekme" data-mod="giris">Giriş yap</button>
+          </div>
+        </form>
+
+        <p id="form-mesaj" class="form-mesaj"></p>
       </div>
-
-      <form id="form-giris">
-        <label>E-posta <input type="email" id="giris-eposta" required autocomplete="email"></label>
-        <label>Şifre <input type="password" id="giris-sifre" required autocomplete="current-password"></label>
-        <button type="submit" class="ana-buton">Giriş yap</button>
-      </form>
-
-      <form id="form-kayit" hidden>
-        <label>Kullanıcı adı <input type="text" id="kayit-ad" required maxlength="20" placeholder="ornek: tyt_avcisi"></label>
-        <label>E-posta <input type="email" id="kayit-eposta" required autocomplete="email"></label>
-        <label>Şifre <input type="password" id="kayit-sifre" required minlength="6" autocomplete="new-password" placeholder="en az 6 karakter"></label>
-        <p class="kayit-onay">Hesap açarak <a href="kullanim-kosullari.html" target="_blank">Kullanım Koşulları</a>'nı ve <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a>'nı kabul etmiş olursun.</p>
-        <button type="submit" class="ana-buton">Hesap aç</button>
-      </form>
-
-      <p id="form-mesaj" class="form-mesaj"></p>
     </div>
 
     <!-- SOHBET -->
     <div id="sohbet-alani" hidden>
       <div class="sohbet-ust">
         <span id="hosgeldin"></span>
-        <button id="cikis" class="kucuk-buton">Çıkış yap</button>
       </div>
 
       <div class="filtreler">
@@ -108,7 +162,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js"></script>
-  <script src="supabase-ayar.js"></script>
-  <script src="topluluk.js"></script>
+  <script src="supabase-ayar.js?v=35"></script>
+  <script src="topluluk.js?v=35"></script>
 </body>
 </html>

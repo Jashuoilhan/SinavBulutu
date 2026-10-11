@@ -28,6 +28,7 @@ function kartlariCiz() {
     kart.dataset.tarih = sinav.tarih;
 
     kart.innerHTML = `
+      <div class="kart-ic">
       <div class="kart-ust">
         <span class="kart-ikon">${sinav.ikon}</span>
         <h2>${sinav.kod}</h2>
@@ -38,6 +39,7 @@ function kartlariCiz() {
       <p class="alt-ad">${sinav.ad}</p>
       <div class="sayac-alani"></div>
       <p class="tarih-yazi">${tarihYaz(new Date(sinav.tarih))}</p>
+      </div>
     `;
     kartAlani.appendChild(kart);
   });
@@ -46,13 +48,24 @@ function kartlariCiz() {
 }
 
 function sayiYaz(kutu, deger) {
-  const yeni = String(deger);
-  if (kutu.textContent !== yeni) {
-    kutu.textContent = yeni;
-    kutu.classList.remove("tik");
-    void kutu.offsetWidth; // animasyonu yeniden başlatmak için
-    kutu.classList.add("tik");
+  const gunMu = kutu.hasAttribute("data-g");
+  const onek = kutu.dataset.onek || "";
+
+  // Number Flow yüklendiyse: rakamlar aşağı doğru kayarak değişir
+  if (customElements.get("number-flow") && typeof kutu.update === "function") {
+    if (!kutu.dataset.hazir) {
+      kutu.trend = -1;
+      kutu.format = { minimumIntegerDigits: gunMu ? 1 : 2 };
+      if (onek) kutu.numberPrefix = onek;
+      if (kutu.hasAttribute("data-d") || kutu.hasAttribute("data-sn")) kutu.digits = { 1: { max: 5 } };
+      kutu.dataset.hazir = "1";
+    }
+    if (kutu.value !== deger) kutu.update(deger);
+    return;
   }
+
+  // Kütüphane yüklenemediyse düz rakam
+  kutu.textContent = onek + (gunMu ? String(deger) : String(deger).padStart(2, "0"));
 }
 
 function sayaclariGuncelle() {
@@ -70,12 +83,11 @@ function sayaclariGuncelle() {
     // İlk seferde sayaç kutularını oluştur
     if (!alan.querySelector(".buyuk-gun")) {
       alan.innerHTML = `
-        <div class="buyuk-gun"><span class="sayi" data-g></span><br><span class="birim">gün kaldı</span></div>
-        <div class="kucuk-sayac">
-          <div><b data-s></b><span>saat</span></div>
-          <div><b data-d></b><span>dakika</span></div>
-          <div><b data-sn></b><span>saniye</span></div>
-        </div>`;
+        <div class="buyuk-gun"><number-flow class="sayi" data-g></number-flow><br><span class="birim">gün kaldı</span></div>
+        <number-flow-group class="nf-saat">
+          <number-flow data-s></number-flow><number-flow data-d data-onek=":"></number-flow><number-flow data-sn data-onek=":"></number-flow>
+        </number-flow-group>
+        <div class="nf-etiket"><span>saat</span><span>dakika</span><span>saniye</span></div>`;
     }
 
     const toplamSaniye = Math.floor(fark / 1000);

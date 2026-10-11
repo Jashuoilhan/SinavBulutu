@@ -7,7 +7,15 @@
   <meta name="description" content="Sınav Bulutu kullanım koşulları ve topluluk kuralları.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <!-- Site adı yazı tipi: Telma (Fontshare, ticari kullanım ücretsiz) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=telma@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=35">
+  <script src="tema.js?v=35"></script>
+  <script src="yukleme.js?v=35"></script>
+  <script src="secim.js?v=35"></script>
+  <script src="baslik.js?v=35"></script>
+  <script src="menu.js?v=35"></script>
+  <script src="bulut3d.js?v=35"></script>
   <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
 </head>
 <body>
@@ -20,12 +28,38 @@
   </div>
 
   <header>
-    <a href="index.html" class="logo">☁️ Sınav Bulutu</a>
+    <div class="logo-alani">
+    <a href="index.html" class="logo">Sınav Bulutu ☁️</a>
+    <!-- Açılır menü: Uiverse.io'dan uyarlandı. Üzerine gelince açılır, butona tıklayınca açılır/kapanır (menu.js). -->
+    <div class="acilir-menu" role="navigation" aria-label="Diğer sayfalar">
+      <button type="button" class="am-dugme" aria-label="Diğer sayfalar" aria-expanded="false">
+        <svg viewBox="0 0 32 32" class="hamburger-ikon" aria-hidden="true"><path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/><path class="line" d="M7 16 27 16"/></svg>
+      </button>
+      <div class="am-liste">
+        <a href="hakkimizda.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+          <span class="am-yazi">Hakkımızda</span>
+        </a>
+        <a href="iletisim.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span>
+          <span class="am-yazi">İletişim</span>
+        </a>
+        <a href="gizlilik.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>
+          <span class="am-yazi">Gizlilik Politikası</span>
+        </a>
+        <a href="kullanim-kosullari.html" class="am-oge">
+          <span class="am-daire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+          <span class="am-yazi">Kullanım Koşulları</span>
+        </a>
+      </div>
+    </div>
+  </div>
     <nav>
-      <a href="index.html">Sayaçlar</a>
-      <a href="puan.html">Puan Hesapla</a>
-      <a href="kaynaklar.html">Kaynaklar</a>
-      <a href="topluluk.html">Topluluk</a>
+      <a href="index.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">⏳</span><span class="button__icon-svg button__icon-svg--copy">⏳</span></span>Sayaçlar</a>
+      <a href="puan.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">🧮</span><span class="button__icon-svg button__icon-svg--copy">🧮</span></span>Puan Hesapla</a>
+      <a href="kaynaklar.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">📚</span><span class="button__icon-svg button__icon-svg--copy">📚</span></span>Kaynaklar</a>
+      <a href="topluluk.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">💬</span><span class="button__icon-svg button__icon-svg--copy">💬</span></span>Topluluk</a>
     </nav>
     <div class="hesap-butonlari">
       <a href="topluluk.html?mod=giris" class="hesap-giris">Giriş yap</a>

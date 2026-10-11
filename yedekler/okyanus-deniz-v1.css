@@ -1,0 +1,41 @@
+/* ============ Arka plan: canlı deniz sahnesi (okyanus.js) ============ */
+.okyanus { position: fixed; inset: 0; z-index: 0; display: block; pointer-events: none; }
+.gokyuzu { display: none; }   /* eski güneş + kayan bulutlar */
+body { background: #0b1f3a; }
+
+/* Koyu denizin üstündeki yazılar okunsun diye cam zemin */
+footer {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: 0 auto 24px;
+  padding: 14px 24px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+/* Koyu denizin üstündeki yazılar okunsun diye cam zemin */
+footer {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: 0 auto 24px;
+  padding: 14px 24px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.not {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+html[data-tema="koyu"] footer,
+html[data-tema="koyu"] .not { background: rgba(14, 20, 42, 0.72); }

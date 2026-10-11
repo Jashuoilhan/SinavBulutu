@@ -71,16 +71,28 @@ function yksHesapla() {
   $("yks-sonuc").innerHTML = html;
 
   // ÖSYM barajları: önlisans için TYT ≥ 150, lisans için TYT ≥ 150 ve ilgili puan ≥ 180
+  // Her uyarı ayrı satırda, türüne göre renkli kutucukta gösterilir.
+  // tur: "bilgi" (mavi), "basari" (yeşil), "uyari" (turuncu)
   const uyarilar = [];
-  if (!diplomaGecerli) uyarilar.push("Diploma notunu girersen yerleştirme puanına OBP de eklenir.");
-  else uyarilar.push(`OBP katkın: +${yuvarla(obpKatkisi)} puan.`);
-  if (puanlar.TYT !== undefined && puanlar.TYT < 150) uyarilar.push("⚠️ TYT puanın 150'nin altında, tercih yapabilmek için en az 150 gerekir.");
+  if (!diplomaGecerli) uyarilar.push({ tur: "bilgi", ikon: "ℹ️", baslik: "Diploma notu", metin: "Diploma notunu girersen yerleştirme puanına OBP de eklenir." });
+  else uyarilar.push({ tur: "bilgi", ikon: "🎓", baslik: "OBP katkın", metin: `+${yuvarla(obpKatkisi)} puan` });
+  if (puanlar.TYT !== undefined && puanlar.TYT < 150) uyarilar.push({ tur: "uyari", ikon: "⚠️", baslik: "TYT barajı", metin: "Puanın 150'nin altında. Tercih yapabilmek için en az 150 gerekir." });
   if (puanlar.TYT >= 150) {
-    uyarilar.push("✅ TYT 150 barajını geçtin: önlisans (2 yıllık) tercihi yapabilirsin.");
+    uyarilar.push({ tur: "basari", ikon: "✅", baslik: "Önlisans", metin: "TYT 150 barajını geçtin, 2 yıllık bölümleri tercih edebilirsin." });
     const lisans = ["SAY", "EA", "SÖZ", "DİL"].filter(t => puanlar[t] >= 180);
-    if (lisans.length) uyarilar.push(`✅ ${lisans.join(", ")} puanın 180'i geçti: bu türde lisans (4 yıllık) tercihi yapabilirsin.`);
+    if (lisans.length) uyarilar.push({ tur: "basari", ikon: "✅", baslik: "Lisans", metin: `${lisans.join(", ")} puanın 180'i geçti, bu türlerde 4 yıllık bölümleri tercih edebilirsin.` });
   }
-  $("yks-uyari").textContent = uyarilar.join(" ");
+  const kutu = $("yks-uyari");
+  kutu.innerHTML = "";
+  uyarilar.forEach(u => {
+    const satir = document.createElement("div");
+    satir.className = `uyari-satir ${u.tur}`;
+    satir.innerHTML = `<span class="uyari-ikon" aria-hidden="true"></span><div><b></b><span class="uyari-metin"></span></div>`;
+    satir.querySelector(".uyari-ikon").textContent = u.ikon;
+    satir.querySelector("b").textContent = u.baslik;
+    satir.querySelector(".uyari-metin").textContent = u.metin;
+    kutu.appendChild(satir);
+  });
 }
 
 // ---------- KPSS ----------
@@ -135,6 +147,35 @@ document.querySelectorAll(".filtreler button").forEach(buton => {
     const kpssMi = buton.dataset.sinav === "kpss";
     $("yks-bolum").hidden = kpssMi;
     $("kpss-bolum").hidden = !kpssMi;
+  });
+});
+
+// YKS kartları: tıklanan kartın paneli açılır, diğerleri kapanır.
+// Tekrar tıklanınca kapanır. Gizli paneldeki değerler hesaba girmeye devam eder.
+// KPSS kartları ortak bir paneli açar ve düzey seçimini (gizli <select>) değiştirir.
+document.querySelectorAll(".puan-kart").forEach(kart => {
+  kart.addEventListener("click", () => {
+    const acilacak = kart.getAttribute("aria-expanded") !== "true";
+    const grup = kart.closest(".puan-kartlari").querySelectorAll(".puan-kart");
+    grup.forEach(k => {
+      k.setAttribute("aria-expanded", "false");
+      k.classList.remove("aktif");
+      document.getElementById(k.dataset.panel).hidden = true;
+    });
+    if (acilacak) {
+      kart.setAttribute("aria-expanded", "true");
+      kart.classList.add("aktif");
+      if (kart.dataset.duzey) {
+        const secim = $("kpss-duzey");
+        secim.value = kart.dataset.duzey;
+        secim.dispatchEvent(new Event("change", { bubbles: true }));
+        $("kpss-panel-baslik").textContent = "🏛️ " + kart.querySelector(".pk-alt").textContent;
+      }
+      const panel = document.getElementById(kart.dataset.panel);
+      panel.hidden = false;
+      const ilkKutu = panel.querySelector("input");
+      if (ilkKutu) ilkKutu.focus({ preventScroll: true });
+    }
   });
 });
 
