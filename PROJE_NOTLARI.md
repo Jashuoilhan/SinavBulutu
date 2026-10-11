@@ -72,7 +72,8 @@ Kullanıcı çıktı. Döndüğünde buradan devam edilecek.
 - **KARAR (2026-10-11):** Şimdilik veritabanı olarak Supabase (PostgreSQL) ile çalışılacak. İleride MSSQL ya da MySQL'e geçilecek. O zamana kadar her şey Supabase üzerinden yapılacak.
 - Kullanıcı Supabase menüsünde Project Settings'i bulmakta zorlandı.
 - Üst menünün sağ üstüne **Giriş yap** (beyaz çerçeveli) ve **Hesap aç** (turuncu) butonları eklendi. Üç sayfada da var, ikisi de `topluluk.html` sayfasına gidiyor. `?mod=kayit` ile gelindiğinde `topluluk.js` direkt kayıt sekmesini açıyor. Stil `style.css` içinde `.hesap-butonlari` altında.
-- ✅ Örnek test hesabı API ile açıldı: kullanıcı adı `ornek_hesap`, e-posta `minetnrvd+ornek@gmail.com` (Gmail'in + adresi, kullanıcının kendi kutusuna düşüyor), şifre `Bulut2026!` (sadece test için). `profiller` tablosuna otomatik kayıt düştü, yani tetikleyici çalışıyor. E-posta onayı bekleniyor.
+- ✅ Örnek test hesabı API ile açıldı: kullanıcı adı `ornek_hesap`, e-posta: eski adres (artık kullanılmıyor, hesap silinecek), şifre `Bulut2026!` (sadece test için). `profiller` tablosuna otomatik kayıt düştü, yani tetikleyici çalışıyor. E-posta onayı bekleniyor.
+- **E-posta değişikliği (2026-10-11):** Kullanıcı `minetnrvd` adresinin sadece Claude hesabı için olduğunu söyledi. Her yerde `ilhanyurt11@icloud.com` kullanılacak. Yeni test hesabı açıldı: kullanıcı adı `ornek_hesap2`, e-posta `ilhanyurt11+ornek@icloud.com` (iCloud + adresi), şifre eski test hesabıyla aynı. Onay maili iCloud'a gitti. Eski `ornek_hesap` hesabını kullanıcı Supabase panelinden (Authentication > Users) silecek. Supabase giriş e-postasını da kullanıcı kendisi değiştirecek.
 - Test aşaması başladı: kullanıcı `topluluk.html` sayfasını açtı. Sırada kayıt (2. adım) var, sonucu bekleniyor. Sonraki seferlerde "Connect" butonunu ya da direkt linki öner.
 
 #### Faz 3: AdSense hazırlığı (başladı, 2026-10-11)
@@ -91,6 +92,11 @@ Kullanıcı çıktı. Döndüğünde buradan devam edilecek.
 - **KPSS Önlisans:** sadece 2018 verisi bulundu (GY 15,69/8,24, GK 17,11/9,98). **Ortaöğretim için hiç veri bulunamadı**, şimdilik önlisans 2018 verisiyle yaklaşık hesaplanıyor. ÖSYM sitesinden 2024 önlisans ve ortaöğretim sayısal bilgileri bulunup eklenmeli.
 - **YKS:** ÖSYM test bazında standart sapma yayınlamadığı için yaygın yaklaşık katsayılar kullanıldı (taban 100; TYT 3.3/3.4; AYT türlerinde TYT 1.32/1.36; SAY Mat 3, Fiz 2.85, Kim 3.07, Biy 3.07; EA Mat 3, Ede 3, Ta1 2.8, Co1 3.33; SÖZ ek olarak Ta2/Co2 2.91, Fel 3, DKAB 3.33; YDT 3). Tam net = 500 olduğu kontrol edildi. ±10 puan sapabilir. OBP = diploma × 5 × 0,12 (yerleşenler 0,06), bu kısım resmi. 150/180 baraj uyarıları var.
 - Hesaplar PowerShell ile kontrol edildi (2025: 80 net ≈ 84,9 P3).
+
+#### GitHub bağlantısı (2026-10-11)
+- Git kimliği tanıtıldı (global): isim `İlhan`, e-posta `ilhanyurt11@icloud.com`.
+- İlk commit yapıldı (`main` dalı). Uzak repo eklendi: `origin` = `https://github.com/ilhan404/s-nav-bulutu.git`. Kullanıcı `main` üzerinde çalışacak.
+- Claude'un terminalinden push yapılamadı, GitHub girişi gerekiyor ("Invalid username or token"). Kullanıcı ilk push'u VS Code terminalinden `git push -u origin main` ile yapacak, tarayıcıda GitHub girişi açılacak.
 
 ## Açık İşler / Sıradaki Adımlar
 0. **AdSense için kalanlar (sırayla):** a) Sitede özgün yazılar olmalı, en az 10-15 tane (çalışma taktikleri, sınav rehberleri). b) Alan adı alınacak. c) Site ücretsiz bir yere yüklenecek (Netlify/Cloudflare Pages). d) Yer tutucular değiştirilecek (ALANADI, iletişim e-postası). e) Google Search Console'a site ve sitemap eklenecek. f) AdSense başvurusu yapılacak, verilen kod tüm sayfaların `<head>` kısmına, pub kimliği `ads.txt` dosyasına yazılacak. g) AdSense panelinde AB kullanıcıları için Google'ın çerez onay mesajı (Privacy & messaging) açılacak. Not: "Reklam alanı" kutuları ve boş PDF bölümü, başvurudan önce gizlenmeli ya da doldurulmalı. Topluluğa şikâyet ve moderasyon özelliği eklenmesi önerilir (kullanıcı içerikli siteler için AdSense kuralı).
