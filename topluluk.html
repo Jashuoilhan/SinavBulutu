@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topluluk — Sınav Bulutu</title>
+  <meta name="description" content="YKS, KPSS ve ALES öğrencileriyle sohbet et, soru sor, birbirinize yardım edin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
+</head>
+<body>
+
+  <div class="gokyuzu" aria-hidden="true">
+    <div class="gunes"></div>
+    <div class="bulut b2"></div>
+    <div class="bulut b4"></div>
+    <div class="bulut b6"></div>
+  </div>
+
+  <header>
+    <a href="index.html" class="logo">☁️ Sınav Bulutu</a>
+    <nav>
+      <a href="index.html">Sayaçlar</a>
+      <a href="puan.html">Puan Hesapla</a>
+      <a href="kaynaklar.html">Kaynaklar</a>
+      <a href="topluluk.html" class="aktif">Topluluk</a>
+    </nav>
+    <div class="hesap-butonlari">
+      <a href="topluluk.html?mod=giris" class="hesap-giris">Giriş yap</a>
+      <a href="topluluk.html?mod=kayit" class="hesap-kayit">Hesap aç</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="giris">
+      <h1>💬 Topluluk</h1>
+      <p>Soru sor, yardım et, birlikte çalışalım</p>
+    </section>
+
+    <!-- Supabase ayarlanmamışsa görünür -->
+    <div class="kutu" id="ayar-uyari" hidden>
+      <h2>⚙️ Kurulum bekleniyor</h2>
+      <p>Topluluk henüz bağlanmadı. <code>supabase-ayar.js</code> dosyasına Supabase bilgileri girilmeli.</p>
+    </div>
+
+    <!-- GİRİŞ / KAYIT -->
+    <div class="kutu hesap-kutu" id="giris-alani">
+      <div class="sekmeler">
+        <button class="sekme aktif" data-mod="giris">Giriş yap</button>
+        <button class="sekme" data-mod="kayit">Hesap aç</button>
+      </div>
+
+      <form id="form-giris">
+        <label>E-posta <input type="email" id="giris-eposta" required autocomplete="email"></label>
+        <label>Şifre <input type="password" id="giris-sifre" required autocomplete="current-password"></label>
+        <button type="submit" class="ana-buton">Giriş yap</button>
+      </form>
+
+      <form id="form-kayit" hidden>
+        <label>Kullanıcı adı <input type="text" id="kayit-ad" required maxlength="20" placeholder="ornek: tyt_avcisi"></label>
+        <label>E-posta <input type="email" id="kayit-eposta" required autocomplete="email"></label>
+        <label>Şifre <input type="password" id="kayit-sifre" required minlength="6" autocomplete="new-password" placeholder="en az 6 karakter"></label>
+        <p class="kayit-onay">Hesap açarak <a href="kullanim-kosullari.html" target="_blank">Kullanım Koşulları</a>'nı ve <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a>'nı kabul etmiş olursun.</p>
+        <button type="submit" class="ana-buton">Hesap aç</button>
+      </form>
+
+      <p id="form-mesaj" class="form-mesaj"></p>
+    </div>
+
+    <!-- SOHBET -->
+    <div id="sohbet-alani" hidden>
+      <div class="sohbet-ust">
+        <span id="hosgeldin"></span>
+        <button id="cikis" class="kucuk-buton">Çıkış yap</button>
+      </div>
+
+      <div class="filtreler">
+        <button class="oda aktif" data-oda="genel">🌤️ Genel</button>
+        <button class="oda" data-oda="yks">🎓 YKS</button>
+        <button class="oda" data-oda="kpss">🏛️ KPSS</button>
+        <button class="oda" data-oda="ales">📚 ALES</button>
+      </div>
+
+      <div class="kutu sohbet-kutu">
+        <div id="mesaj-listesi" class="mesaj-listesi"></div>
+        <form id="form-gonder" class="gonder">
+          <input type="text" id="mesaj-yaz" maxlength="1000" placeholder="Mesajını yaz..." autocomplete="off">
+          <button type="submit" class="ana-buton">Gönder</button>
+        </form>
+      </div>
+
+      <p class="not">Saygılı olalım 🤝 Hakaret, spam ve reklam içeren mesajlar silinir.</p>
+    </div>
+
+    <div class="reklam">Reklam alanı</div>
+  </main>
+
+  <footer>
+    <div class="alt-linkler">
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+      <a href="gizlilik.html">Gizlilik Politikası</a>
+      <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+    </div>
+    © 2026 Sınav Bulutu — Başarılar dileriz!
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js"></script>
+  <script src="supabase-ayar.js"></script>
+  <script src="topluluk.js"></script>
+</body>
+</html>

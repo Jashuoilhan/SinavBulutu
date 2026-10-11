@@ -1,0 +1,3 @@
+# AdSense onaylanınca alttaki satırın başındaki # işaretini sil
+# ve pub-XXXXXXXXXXXXXXXX kısmına kendi yayıncı kimliğini yaz.
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

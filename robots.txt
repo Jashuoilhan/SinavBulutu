@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Alan adı alınınca ALANADI kısmını değiştir
+Sitemap: https://ALANADI/sitemap.xml

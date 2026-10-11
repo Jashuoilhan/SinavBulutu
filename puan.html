@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puan Hesaplama — Sınav Bulutu</title>
+  <meta name="description" content="YKS (TYT, AYT, SAY, EA, SÖZ, DİL) ve KPSS (Lisans P3, Önlisans P93, Ortaöğretim P94) puan hesaplama. Doğru ve yanlışlarını gir, tahmini puanını öğren.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
+</head>
+<body>
+
+  <div class="gokyuzu" aria-hidden="true">
+    <div class="gunes"></div>
+    <div class="bulut b1"></div>
+    <div class="bulut b3"></div>
+    <div class="bulut b5"></div>
+  </div>
+
+  <header>
+    <a href="index.html" class="logo">☁️ Sınav Bulutu</a>
+    <nav>
+      <a href="index.html">Sayaçlar</a>
+      <a href="puan.html" class="aktif">Puan Hesapla</a>
+      <a href="kaynaklar.html">Kaynaklar</a>
+      <a href="topluluk.html">Topluluk</a>
+    </nav>
+    <div class="hesap-butonlari">
+      <a href="topluluk.html?mod=giris" class="hesap-giris">Giriş yap</a>
+      <a href="topluluk.html?mod=kayit" class="hesap-kayit">Hesap aç</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="giris">
+      <h1>🧮 Puan Hesaplama</h1>
+      <p>Doğru ve yanlışlarını gir, tahmini puanını anında gör</p>
+    </section>
+
+    <div class="filtreler">
+      <button class="aktif" data-sinav="yks">YKS (TYT-AYT)</button>
+      <button data-sinav="kpss">KPSS</button>
+    </div>
+
+    <!-- ============ YKS ============ -->
+    <section id="yks-bolum">
+      <div class="kutu">
+        <h2>📘 TYT</h2>
+        <div class="test-tablo" id="tablo-tyt"></div>
+      </div>
+
+      <div class="kutu">
+        <h2>📗 AYT</h2>
+        <p class="kucuk-not">Sadece girdiğin testleri doldur, boş kalanlar 0 sayılır.</p>
+        <div class="test-tablo" id="tablo-ayt"></div>
+      </div>
+
+      <div class="kutu">
+        <h2>🌍 YDT</h2>
+        <div class="test-tablo" id="tablo-ydt"></div>
+      </div>
+
+      <div class="kutu">
+        <h2>🎓 Diploma notu (OBP)</h2>
+        <div class="obp-satir">
+          <label>Diploma notu (50-100)
+            <input type="number" id="diploma" min="50" max="100" step="0.01" placeholder="örn: 85">
+          </label>
+          <label class="onay-kutu">
+            <input type="checkbox" id="yerlesti"> Geçen yıl bir bölüme yerleştim
+          </label>
+        </div>
+      </div>
+
+      <div class="kutu sonuc-kutu">
+        <h2>📊 Sonuçlar</h2>
+        <div class="sonuc-tablo" id="yks-sonuc"></div>
+        <p class="kucuk-not" id="yks-uyari"></p>
+      </div>
+    </section>
+
+    <!-- ============ KPSS ============ -->
+    <section id="kpss-bolum" hidden>
+      <div class="kutu">
+        <h2>🏛️ Düzey ve yıl</h2>
+        <div class="obp-satir">
+          <label>Düzey
+            <select id="kpss-duzey">
+              <option value="lisans">Lisans (P1, P2, P3)</option>
+              <option value="onlisans">Önlisans (P93)</option>
+              <option value="ortaogretim">Ortaöğretim (P94)</option>
+            </select>
+          </label>
+          <label>Hangi yılın verisiyle?
+            <select id="kpss-yil"></select>
+          </label>
+        </div>
+        <p class="kucuk-not" id="kpss-veri-not"></p>
+      </div>
+
+      <div class="kutu">
+        <h2>✏️ Doğru ve yanlışlar</h2>
+        <div class="test-tablo" id="tablo-kpss"></div>
+      </div>
+
+      <div class="kutu sonuc-kutu">
+        <h2>📊 Sonuçlar</h2>
+        <div class="sonuc-tablo" id="kpss-sonuc"></div>
+      </div>
+    </section>
+
+    <div class="reklam">Reklam alanı</div>
+
+    <div class="kutu">
+      <h2>ℹ️ Bu puanlar ne kadar doğru?</h2>
+      <ul>
+        <li><strong>Net hesabı kesindir:</strong> 4 yanlış 1 doğruyu götürür (Net = Doğru − Yanlış ÷ 4).</li>
+        <li><strong>OBP katkısı kesindir:</strong> Diploma notu × 5 × 0,12. Geçen yıl bir bölüme yerleştiysen 0,06 ile çarpılır.</li>
+        <li><strong>Puanlar tahminidir:</strong> ÖSYM puanı, o yıl sınava giren herkesin ortalamasına ve standart sapmasına göre hesaplar. Bu yüzden aynı net her yıl farklı puan eder. Sınav bitmeden kimse kesin puanı bilemez.</li>
+        <li><strong>KPSS:</strong> ÖSYM'nin standart puan yöntemiyle, seçtiğin yılın resmi ortalama ve standart sapma değerleri kullanılarak hesaplanır. Sapma genelde 1-2 puandır.</li>
+        <li><strong>YKS:</strong> Önceki yılların ortalama katsayılarıyla hesaplanır. Gerçek puanından ±10 puan kadar farklı çıkabilir.</li>
+      </ul>
+      <p>Kesin sonucun için her zaman <a href="https://www.osym.gov.tr" target="_blank" rel="noopener">ÖSYM</a>'nin açıkladığı sonuçlara bak.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="alt-linkler">
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+      <a href="gizlilik.html">Gizlilik Politikası</a>
+      <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+    </div>
+    © 2026 Sınav Bulutu — Başarılar dileriz!
+  </footer>
+
+  <script src="puan-verileri.js"></script>
+  <script src="puan.js"></script>
+</body>
+</html>

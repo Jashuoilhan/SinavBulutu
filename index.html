@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sınav Bulutu — YKS, KPSS, ALES Geri Sayım</title>
+  <meta name="description" content="TYT, AYT, YDT, KPSS Lisans, KPSS Önlisans, KPSS Ortaöğretim ve ALES sınavlarına kaç gün kaldı? Canlı geri sayım sayacı.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
+</head>
+<body>
+
+  <!-- Hareketli gökyüzü -->
+  <div class="gokyuzu" aria-hidden="true">
+    <div class="gunes"></div>
+    <div class="bulut b1"></div>
+    <div class="bulut b2"></div>
+    <div class="bulut b3"></div>
+    <div class="bulut b4"></div>
+    <div class="bulut b5"></div>
+    <div class="bulut b6"></div>
+  </div>
+
+  <header>
+    <a href="index.html" class="logo">☁️ Sınav Bulutu</a>
+    <nav>
+      <a href="index.html" class="aktif">Sayaçlar</a>
+      <a href="puan.html">Puan Hesapla</a>
+      <a href="kaynaklar.html">Kaynaklar</a>
+      <a href="topluluk.html">Topluluk</a>
+    </nav>
+    <div class="hesap-butonlari">
+      <a href="topluluk.html?mod=giris" class="hesap-giris">Giriş yap</a>
+      <a href="topluluk.html?mod=kayit" class="hesap-kayit">Hesap aç</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="giris">
+      <h1>Sınavına kaç gün kaldı?</h1>
+      <p>YKS, KPSS ve ALES için canlı geri sayım ☁️</p>
+    </section>
+
+    <div class="filtreler">
+      <button class="aktif" data-grup="Hepsi">Hepsi</button>
+      <button data-grup="YKS">YKS</button>
+      <button data-grup="KPSS">KPSS</button>
+      <button data-grup="ALES">ALES</button>
+    </div>
+
+    <div class="reklam">Reklam alanı</div>
+
+    <section class="kartlar" id="kartlar"></section>
+
+    <div class="reklam">Reklam alanı</div>
+
+    <p class="not">
+      "Tahmini" yazan tarihler önceki yıllara göre tahmin edilmiştir. Kesin tarihler için
+      <a href="https://www.osym.gov.tr" target="_blank" rel="noopener">ÖSYM</a>'yi takip edin.
+    </p>
+  </main>
+
+  <footer>
+    <div class="alt-linkler">
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+      <a href="gizlilik.html">Gizlilik Politikası</a>
+      <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+    </div>
+    © 2026 Sınav Bulutu — Başarılar dileriz!
+  </footer>
+
+  <script src="sinavlar.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
