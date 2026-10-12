@@ -1696,3 +1696,97 @@ body.menu-acik .logo {
    HTML'de yerlerinde duruyorlar (<div class="reklam">). AdSense gelince
    bu kuralı silmek yeterli. Yerlerin listesi PROJE_NOTLARI.md → "Reklam alanları". */
 .reklam { display: none !important; }
+
+/* ============ Kaynaklar sayfası ============ */
+.kaynak-liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 12px;
+}
+
+.kaynak {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--kart-kenar);
+  color: var(--yazi);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kaynak:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(20, 60, 110, 0.15); }
+.kaynak-ikon { font-size: 1.6rem; line-height: 1; }
+.kaynak-govde { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.kaynak-govde span { color: var(--yazi-soluk); font-size: 0.9rem; line-height: 1.45; }
+
+.kaynak-etiket {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--mavi);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.kaynak-etiket.pdf { background: var(--vurgu); }
+.kaynak-bolum[hidden] { display: none; }
+
+html[data-tema="koyu"] .kaynak { background: rgba(255, 255, 255, 0.06); }
+html[data-tema="koyu"] .kaynak-etiket { color: #0a1230; }
+
+.kaynak-etiket.yakinda { background: #7b93a8; }
+.kaynak[aria-disabled="true"] { cursor: default; opacity: 0.85; }
+.kaynak[aria-disabled="true"]:hover { transform: none; box-shadow: none; }
+
+/* ============ Blog ============ */
+.blog-liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 18px;
+}
+.blog-kart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--kart);
+  border: 2px solid var(--kart-kenar);
+  color: var(--yazi);
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-kart:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(20, 60, 110, 0.15); }
+.blog-kart h2 { font-size: 1.15rem; line-height: 1.35; }
+.blog-kart p { color: var(--yazi-soluk); font-size: 0.95rem; line-height: 1.5; flex: 1; }
+.blog-kart[hidden] { display: none; }
+.blog-etiket {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--mavi);
+  color: #fff;
+}
+.blog-bilgi { font-size: 0.85rem; color: var(--yazi-soluk); }
+.yazi { max-width: 760px; margin: 0 auto 20px; padding: clamp(20px, 4vw, 40px); }
+.yazi .geri { display: inline-block; margin-bottom: 14px; color: var(--mavi); font-weight: 800; text-decoration: none; }
+.yazi h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.25; margin: 10px 0 6px; }
+.yazi > .blog-bilgi { margin-bottom: 22px; }
+.yazi h2 { font-size: 1.35rem; margin: 28px 0 10px; }
+.yazi h3 { font-size: 1.1rem; margin: 18px 0 6px; }
+.yazi p, .yazi li { font-size: 1.05rem; line-height: 1.75; }
+.yazi p { margin-bottom: 14px; }
+.yazi ul, .yazi ol { padding-left: 24px; margin-bottom: 14px; }
+.yazi li { margin-bottom: 6px; }
+.yazi a:not(.geri) { color: var(--mavi); font-weight: 700; }
+.blog-benzer { max-width: 1000px; margin: 0 auto; }
+.blog-benzer > h2 { text-align: center; margin-bottom: 16px; }
+html[data-tema="koyu"] .blog-etiket { color: #0a1230; }

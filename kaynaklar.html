@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kaynaklar — Sınav Bulutu</title>
-  <meta name="description" content="YKS, KPSS ve ALES için ücretsiz ve resmi kaynaklar, PDF dokümanlar.">
+  <meta name="description" content="YKS, KPSS, ALES ve DGS için resmi kaynaklar: ÖSYM kılavuzları, çıkmış sorular, YÖK Atlas, MEB OGM Materyal ve ücretsiz PDF dokümanlar.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
   <!-- Site adı yazı tipi: Telma (Fontshare, ticari kullanım ücretsiz) -->
   <link href="https://api.fontshare.com/v2/css?f[]=telma@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=35">
-  <script src="tema.js?v=35"></script>
-  <script src="yukleme.js?v=35"></script>
-  <script src="secim.js?v=35"></script>
-  <script src="baslik.js?v=35"></script>
-  <script src="menu.js?v=35"></script>
-  <script src="bulut3d.js?v=35"></script>
+  <link rel="stylesheet" href="style.css?v=39">
+  <script src="tema.js?v=39"></script>
+  <script src="yukleme.js?v=39"></script>
+  <script src="secim.js?v=39"></script>
+  <script src="baslik.js?v=39"></script>
+  <script src="menu.js?v=39"></script>
+  <script src="bulut3d.js?v=39"></script>
+  <script src="kaynaklar.js?v=39" defer></script>
   <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
 </head>
 <body>
@@ -59,6 +60,7 @@
       <a href="index.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">⏳</span><span class="button__icon-svg button__icon-svg--copy">⏳</span></span>Sayaçlar</a>
       <a href="puan.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">🧮</span><span class="button__icon-svg button__icon-svg--copy">🧮</span></span>Puan Hesapla</a>
       <a href="kaynaklar.html" class="button aktif"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">📚</span><span class="button__icon-svg button__icon-svg--copy">📚</span></span>Kaynaklar</a>
+      <a href="blog.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">✍️</span><span class="button__icon-svg button__icon-svg--copy">✍️</span></span>Blog</a>
       <a href="topluluk.html" class="button"><span class="button__icon-wrapper" aria-hidden="true"><span class="button__icon-svg">💬</span><span class="button__icon-svg button__icon-svg--copy">💬</span></span>Topluluk</a>
     </nav>
     <div class="hesap-butonlari">
@@ -70,31 +72,274 @@
   <main>
     <section class="giris">
       <h1>📂 Kaynaklar</h1>
-      <p>Sınava hazırlanırken işine yarayacak dokümanlar</p>
+      <p>Sınava hazırlanırken ihtiyacın olan resmi kaynaklar tek sayfada</p>
     </section>
 
-    <div class="kutu">
-      <h2>🏛️ Resmi kaynaklar</h2>
-      <ul>
-        <li><a href="https://www.osym.gov.tr" target="_blank" rel="noopener">ÖSYM</a>: sınav kılavuzları, takvim ve çıkmış sorular</li>
-        <li><a href="https://ogmmateryal.eba.gov.tr" target="_blank" rel="noopener">MEB OGM Materyal</a>: ücretsiz konu anlatımları ve soru bankaları</li>
-      </ul>
+    <div class="filtreler kaynak-filtre">
+      <button class="aktif" data-grup="hepsi">Tümü</button>
+      <button data-grup="yks">YKS</button>
+      <button data-grup="kpss">KPSS</button>
+      <button data-grup="ales">ALES / DGS</button>
+      <button data-grup="genel">Genel</button>
     </div>
+
+    <section class="kutu kaynak-bolum" data-grup="genel">
+      <h2>🧭 Her sınav için</h2>
+      <div class="kaynak-liste">
+        <a class="kaynak" href="https://www.osym.gov.tr/Sayfa/SinavTakvimi" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🗓️</span>
+          <span class="kaynak-govde">
+            <strong>ÖSYM Sınav Takvimi</strong>
+            <span>Bütün sınavların başvuru, sınav ve sonuç tarihleri. Sayaçlarımızdaki resmi tarihler buradan alınıyor.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://ais.osym.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🪪</span>
+          <span class="kaynak-govde">
+            <strong>ÖSYM Aday İşlemleri Sistemi (AİS)</strong>
+            <span>Başvuru, sınav giriş belgesi, sonuç ve tercih işlemleri bu sistemden yapılır.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://dokuman.osym.gov.tr/pdfdokuman/yasakli-ve-izinli-belgeler.pdf" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🎒</span>
+          <span class="kaynak-govde">
+            <strong>Sınava girerken yanına alabileceklerin</strong>
+            <span>ÖSYM'nin yasaklı ve izinli eşya listesi. Sınav sabahından önce mutlaka bir göz at.</span>
+          </span>
+          <span class="kaynak-etiket pdf">PDF</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="kutu kaynak-bolum" data-grup="yks">
+      <h2>🎓 YKS (TYT, AYT, YDT)</h2>
+      <div class="kaynak-liste">
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Menu/317" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📘</span>
+          <span class="kaynak-govde">
+            <strong>YKS Kılavuzları</strong>
+            <span>Başvuru şartları, sınav konuları ve puan türleri. Her yıl yeni kılavuz yayımlanır.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Menu/323" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📝</span>
+          <span class="kaynak-govde">
+            <strong>YKS Çıkmış Sorular ve Cevaplar</strong>
+            <span>Geçmiş yılların soru kitapçıkları ve cevap anahtarları. Deneme gibi süre tutarak çöz.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Menu/320" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📊</span>
+          <span class="kaynak-govde">
+            <strong>YKS Sayısal Bilgiler</strong>
+            <span>Test ortalamaları ve aday istatistikleri. Hangi testte ne kadar net yapıldığını gösterir.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://yokatlas.yok.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🏫</span>
+          <span class="kaynak-govde">
+            <strong>YÖK Atlas</strong>
+            <span>Bölümlerin taban puanları, başarı sıralamaları ve yerleşenlerin netleri. Hedef belirlemek için en iyi kaynak.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://ogmmateryal.eba.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📚</span>
+          <span class="kaynak-govde">
+            <strong>MEB OGM Materyal</strong>
+            <span>MEB'in ücretsiz konu özetleri, soru bankaları ve deneme sınavları. PDF olarak indirilebilir.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.eba.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">💻</span>
+          <span class="kaynak-govde">
+            <strong>EBA</strong>
+            <span>MEB'in ders videoları ve etkinlikleri. Konu tekrarı için ücretsiz.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://tymm.meb.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📐</span>
+          <span class="kaynak-govde">
+            <strong>Ortaöğretim Öğretim Programları</strong>
+            <span>Lise derslerinin resmi müfredatı. YKS soruları bu programdaki konulardan gelir.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+      </div>
+    </section>
 
     <div class="reklam">Reklam alanı</div>
 
-    <div class="kutu">
-      <h2>📄 PDF dokümanlar</h2>
-      <p>Sitemize özel hazırlanan PDF'ler çok yakında burada olacak.</p>
-      <!--
-        PDF EKLEMEK İÇİN:
-        1) PDF dosyasını "pdfler" klasörüne koy.
-        2) Aşağıdaki satırı kopyala, dosya adını ve başlığı değiştir:
-        <li><a href="pdfler/dosya-adi.pdf" target="_blank">Başlık</a></li>
-      -->
+    <section class="kutu kaynak-bolum" data-grup="kpss">
+      <h2>🏛️ KPSS</h2>
+      <div class="kaynak-liste">
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Menu/338" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📘</span>
+          <span class="kaynak-govde">
+            <strong>KPSS Kılavuzları</strong>
+            <span>Lisans, ön lisans ve ortaöğretim başvuru kılavuzları.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://dokuman.osym.gov.tr/web//2026/9/2026-kpss-lisans-basvuru-kilavuzu-6v7v57-22101148.pdf" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📄</span>
+          <span class="kaynak-govde">
+            <strong>2026-KPSS Lisans Başvuru Kılavuzu</strong>
+            <span>Puan türleri, test konuları ve başvuru şartları.</span>
+          </span>
+          <span class="kaynak-etiket pdf">PDF</span>
+        </a>
+        <a class="kaynak" href="https://dokuman.osym.gov.tr/web//2026/9/2026-kpss-on-lisans-basvuru-kilavuzu-l21r5f-22101148.pdf" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📄</span>
+          <span class="kaynak-govde">
+            <strong>2026-KPSS Ön Lisans Başvuru Kılavuzu</strong>
+            <span>Ön lisans mezunları için resmi kılavuz.</span>
+          </span>
+          <span class="kaynak-etiket pdf">PDF</span>
+        </a>
+        <a class="kaynak" href="https://dokuman.osym.gov.tr/web//2026/9/2026-kpss-ortaogretim-basvuru-kilavuzu-0k8595-22101148.pdf" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📄</span>
+          <span class="kaynak-govde">
+            <strong>2026-KPSS Ortaöğretim Başvuru Kılavuzu</strong>
+            <span>Sınav 25 Ekim 2026'da. Lise mezunları için resmi kılavuz.</span>
+          </span>
+          <span class="kaynak-etiket pdf">PDF</span>
+        </a>
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Menu/344" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📝</span>
+          <span class="kaynak-govde">
+            <strong>KPSS Çıkmış Sorular ve Cevaplar</strong>
+            <span>Geçmiş yılların Genel Yetenek ve Genel Kültür soruları. En değerli çalışma kaynağı.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Menu/341" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📊</span>
+          <span class="kaynak-govde">
+            <strong>KPSS Sayısal Bilgiler</strong>
+            <span>Test ortalamaları ve standart sapmalar. Puan hesaplayıcımız bu verileri kullanıyor.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2709.pdf" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">⚖️</span>
+          <span class="kaynak-govde">
+            <strong>T.C. Anayasası</strong>
+            <span>Vatandaşlık konusunun temeli. Mevzuat Bilgi Sistemi'nden güncel resmi metin.</span>
+          </span>
+          <span class="kaynak-etiket pdf">PDF</span>
+        </a>
+        <a class="kaynak" href="https://ataturkansiklopedisi.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🇹🇷</span>
+          <span class="kaynak-govde">
+            <strong>Atatürk Ansiklopedisi</strong>
+            <span>Atatürk İlkeleri ve İnkılap Tarihi için güvenilir resmi kaynak.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://sozluk.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🔤</span>
+          <span class="kaynak-govde">
+            <strong>TDK Güncel Türkçe Sözlük</strong>
+            <span>Yazım kuralları ve anlam soruları için resmi sözlük.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.kariyerkapisi.gov.tr" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">🏢</span>
+          <span class="kaynak-govde">
+            <strong>Kariyer Kapısı</strong>
+            <span>Kamu iş ilanları ve tercih duyuruları. KPSS puanını nerede kullanacağını buradan takip et.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="kutu kaynak-bolum" data-grup="ales">
+      <h2>🎯 ALES ve DGS</h2>
+      <div class="kaynak-liste">
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Index/5" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📘</span>
+          <span class="kaynak-govde">
+            <strong>ALES Sayfası</strong>
+            <span>Kılavuzlar, çıkmış sorular ve sayısal bilgiler. ALES/3 sınavı 29 Kasım 2026'da.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+        <a class="kaynak" href="https://www.osym.gov.tr/SinavGrubu/Index/8" target="_blank" rel="noopener">
+          <span class="kaynak-ikon" aria-hidden="true">📘</span>
+          <span class="kaynak-govde">
+            <strong>DGS Sayfası</strong>
+            <span>Dikey geçiş kılavuzları, çıkmış sorular ve kontenjanlar.</span>
+          </span>
+          <span class="kaynak-etiket">Site</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="kutu">
+      <h2>💡 Kaynakları nasıl kullanmalısın?</h2>
       <ul>
+        <li><strong>Önce kılavuzu oku.</strong> Hangi testte kaç soru olduğunu ve hangi konuların sorulduğunu bilmeden çalışma programı yapma.</li>
+        <li><strong>Çıkmış soruları sona bırakma.</strong> ÖSYM'nin soru tarzını en iyi kendi soruları gösterir. Her hafta en az bir yılın sorularını süre tutarak çöz.</li>
+        <li><strong>Hedefini YÖK Atlas ya da kadro ilanlarıyla belirle.</strong> Hedef bölümün ya da kadronun geçen yılki puanını bilirsen kaç nete ihtiyacın olduğunu <a href="puan.html">puan hesaplayıcımızla</a> bulabilirsin.</li>
+        <li><strong>Ücretsiz kaynaklar yeterli olabilir.</strong> MEB OGM Materyal'deki konu özetleri ve soru bankaları ücretli kitaplara iyi bir alternatif.</li>
       </ul>
+    </section>
+
+    <div class="kutu">
+      <h2>📄 Sınav Bulutu PDF'leri</h2>
+      <p>Kendi hazırladığımız, yazdırıp kullanabileceğin çalışma setleri.</p>
+      <div class="kaynak-liste">
+        <a class="kaynak" href="pdfler/sinav-bulutu-deneme-takip-cizelgeleri.pdf" target="_blank">
+          <span class="kaynak-ikon" aria-hidden="true">📈</span>
+          <span class="kaynak-govde">
+            <strong>Deneme Takip Çizelgeleri</strong>
+            <span>TYT, AYT (SAY/EA/SÖZ), KPSS ve LGS için 20'şer denemelik çizelge, net grafiği ve deneme analizi rehberi. 8 sayfa.</span>
+          </span>
+          <span class="kaynak-etiket pdf">Ücretsiz</span>
+        </a>
+        <a class="kaynak" aria-disabled="true">
+          <span class="kaynak-ikon" aria-hidden="true">🎓</span>
+          <span class="kaynak-govde">
+            <strong>YKS 2027 Çalışma Programı</strong>
+            <span>35 haftalık yol haritası, SAY/EA/SÖZ örnek programları, TYT-AYT konu takip listeleri, planlayıcılar. 20 sayfa.</span>
+          </span>
+          <span class="kaynak-etiket yakinda">Yakında</span>
+        </a>
+        <a class="kaynak" aria-disabled="true">
+          <span class="kaynak-ikon" aria-hidden="true">🏛️</span>
+          <span class="kaynak-govde">
+            <strong>KPSS GY-GK Çalışma Programı</strong>
+            <span>12 aylık plan, çalışan ve tam zamanlı aday programları, konu takip listesi, planlayıcılar. 11 sayfa.</span>
+          </span>
+          <span class="kaynak-etiket yakinda">Yakında</span>
+        </a>
+        <a class="kaynak" aria-disabled="true">
+          <span class="kaynak-ikon" aria-hidden="true">🏫</span>
+          <span class="kaynak-govde">
+            <strong>LGS Çalışma Programı</strong>
+            <span>Okulla uyumlu plan, haftalık program, soru takip tablosu, planlayıcılar. 8 sayfa.</span>
+          </span>
+          <span class="kaynak-etiket yakinda">Yakında</span>
+        </a>
+      </div>
+      <!--
+        Ücretsiz PDF'ler "pdfler" klasöründe, ücretli setler "satis" klasöründe (siteye/GitHub'a yüklenmez).
+        PDF'leri yeniden üretmek için: python araclar/pdf-uret.py
+        Başkalarının telifli PDF'lerini (yayınevi kitapları, ÖSYM soruları) buraya YÜKLEME.
+      -->
     </div>
+
+    <p class="not">Linkler resmi kurumların sitelerine gider. Son kontrol: Ekim 2026.</p>
   </main>
 
   <footer>

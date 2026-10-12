@@ -62,8 +62,16 @@ const SINAVLAR = [
     kod: "KPSS Ortaöğretim",
     ad: "Kamu Personel Seçme Sınavı — Ortaöğretim",
     grup: "KPSS",
-    tarih: "2028-10-22T10:15:00+03:00",
-    resmi: false,
+    tarih: "2026-10-25T10:15:00+03:00",
+    resmi: true,
     ikon: "✏️"
+  },
+  {
+    kod: "LGS",
+    ad: "Liselere Geçiş Sistemi Merkezi Sınavı (MEB)",
+    grup: "LGS",
+    tarih: "2027-06-13T09:30:00+03:00",
+    resmi: false,
+    ikon: "🏫"
   }
 ];

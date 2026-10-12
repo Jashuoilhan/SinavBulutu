@@ -153,6 +153,39 @@ Ortak dosyalar (hepsi tüm sayfaların `<head>`'inde, `?v=34` sürüm etiketiyle
 - YKS sonuç altındaki bilgi/uyarı yazıları okunur hale getirildi: her biri ayrı satır, ikon + kalın başlık + açıklama; renk türe göre (bilgi mavi, başarı yeşil, uyarı turuncu). `puan.js` `yksHesapla` içinde, stil `.uyari-satir`.
 - Kullanıcıya açık kaynak UI kaynakları anlatıldı (Uiverse.io, Lucide/Tabler ikonlar, unDraw, Pico.css, Animate.css; lisans: MIT/CC0 serbest, "ücretsiz" ≠ açık kaynak).
 
+#### Para kazanma ve rakip analizi (2026-10-12)
+**İstek:** AdSense onayı + KPSS/YKS ile ilgili satılabilecek ürün önerileri + rakip analizi.
+- Rakipler: hesaplama.net (dev hesaplama sitesi, gömme/embed özelliği, SSS metinleri), rehberpanda.com (ücretsiz araçlar + WhatsApp'tan koçluk satışı, reklam yok), dbtakip.com (deneme takip, tercih simülasyonu, koç/kurum paketleri, PayTR), nettekurs, hesapmod, xyzakademi, ykskocum, ertansinansahin, atlasrehberlik (sayaç + koçluk). Rakiplerin çoğu asıl parayı koçluktan kazanıyor, reklamdan değil.
+- Koçluk piyasası: aylık yaklaşık 3.000–7.500 TL (rehberpanda verisi).
+- ÖSYM soruları telifli: yazılı izin olmadan yayınlanamaz/satılamaz.
+- Önerilen ürünler: premium deneme/net takip paneli, kişiye özel çalışma programı, yazdırılabilir planlayıcılar ve özet kartları, kitap affiliate linkleri, koçlarla ortaklık, gömülebilir sayaç (backlink için).
+- AdSense öncesi: yer tutucuları kaldır (ALANADI, pub-XXXX, iletisim@ornek.com), alan adı al, 20–25 özgün yazı yaz, hesaplama sayfalarına açıklama + SSS ekle, sohbet sayfasına reklam koyma.
+
+#### Kaynaklar sayfası dolduruldu (2026-10-12)
+- `kaynaklar.html` baştan yazıldı: 22 resmi kaynak kartı, 4 bölüm (Genel, YKS, KPSS, ALES/DGS) + filtre butonları (`kaynaklar.js`), "Kaynakları nasıl kullanmalısın?" ipuçları, "Sınav Bulutu PDF'leri" bölümü (boş, kendi PDF'lerimiz gelecek). Stil `style.css` sonunda "Kaynaklar sayfası" altında.
+- Tüm linkler 12.10.2026'da kontrol edildi (200). Tek istisna: kariyerkapisi.gov.tr bu bilgisayardan cevap vermedi, link elle kontrol edilmeli.
+- PDF olarak doğrudan ÖSYM dosyalarına link verildi (2026 KPSS kılavuzları, yasaklı/izinli eşya listesi) + Anayasa (mevzuat.gov.tr). PDF'ler siteye KOPYALANMADI, sadece link.
+- **Tarih düzeltmesi:** ÖSYM takvimine göre 2026-KPSS Ortaöğretim 25.10.2026'da. `sinavlar.js` içinde 2028 tahmini yerine bu resmi tarih girildi. (2026 KPSS Lisans 06.09 ve Önlisans 04.10 yapıldı, bir sonraki 2028 tahmini doğru.)
+- Tüm sayfalarda önbellek sürümü `?v=36` yapıldı.
+
+#### Sınav Bulutu PDF'leri (2026-10-12)
+**İstek:** YKS (TYT/AYT), KPSS, LGS için satılabilecek kaliteli çalışma programı ve takip çizelgeleri.
+- Üretici: `araclar/pdf-uret.py` (Python → HTML → Edge ile A4 PDF). Konu listeleri ve içerik bu dosyada. Yeniden üretmek: `python araclar/pdf-uret.py`.
+- ÜCRETSİZ: `pdfler/sinav-bulutu-deneme-takip-cizelgeleri.pdf` (8 sayfa; TYT, AYT SAY/EA/SÖZ, KPSS, LGS çizelgeleri + analiz rehberi). Kaynaklar sayfasında indirilebilir. Amaç: ziyaretçi çekmek, ücretli setlere yönlendirmek.
+- ÜCRETLİ (`satis/` klasörü, `.gitignore` ile GitHub'a ve siteye GİTMİYOR): YKS 2027 (20 sayfa), KPSS GY-GK (11 sayfa), LGS (8 sayfa). Kaynaklar sayfasında "Yakında" olarak görünüyor. Satış altyapısı (Shopier/iyzico) henüz yok.
+- Konu listeleri genel bilgiye dayanıyor; KPSS soru dağılımı (Tarih 27, Coğ 18, Vat 9, Güncel 6) ve LGS soru sayıları yaygın düzene göre yazıldı, ÖSYM/MEB kılavuzundan ayrıca doğrulanmadı. Satıştan önce bir öğretmen/uzman gözden geçirmeli.
+- LGS sitedeki sayaçlarda yok (eklenebilir).
+- Önbellek sürümü `?v=37`.
+- **LGS sayacı eklendi:** `sinavlar.js` (grup "LGS", 13.06.2027 09:30, TAHMİNİ — MEB 2027 tarihini henüz açıklamadı, son yıllarda Haziran ortası Pazar). `index.html`'e LGS filtre butonu ve MEB linki eklendi. Önbellek `?v=38`. MEB tarihi açıklayınca güncellenecek.
+
+#### Blog (2026-10-12)
+**İstek:** AdSense onayı için blog yazıları, "operasyon senin elinde".
+- Altyapı: yazılar `araclar/yazilar/*.html` (en üstte baslik/aciklama/tarih/etiket bilgi bloğu). `python araclar/blog-uret.py` → `blog/*.html`, `blog.html` (liste + etiket filtresi) ve `sitemap.xml` (puan.html ve blog dahil, ALANADI yer tutucusu `blog-uret.py` içinde). Menü/üst/alt kısım `kaynaklar.html`'den kopyalanır; menü değişirse aracı tekrar çalıştır.
+- Her yazıda: meta description, Article JSON-LD, tarih, okuma süresi, reklam alanı, "benzer yazılar". Tüm sayfaların menüsüne "✍️ Blog" butonu eklendi. Stil `style.css` sonunda "Blog" altında. Önbellek `?v=39`.
+- İlk 8 yazı (420–610 kelime): deneme analizi, YKS 2027 çalışma programı, KPSS puanı nasıl hesaplanır, netler neden artmıyor, pomodoro, KPSS Ortaöğretim son 2 hafta, LGS veli rehberi, ÖSYM çıkmış sorular. Yazılar iç linklerle puan/kaynaklar/sayaç/PDF'e bağlı. Kırık link kontrolü yapıldı.
+- Hedef: 20–25 yazı. Kullanıcı yazılara kendi deneyiminden ekleme yapmalı (AdSense özgünlük).
+- ⚠️ `yukleme.js` her sayfada 4 sn'ye kadar "Never Gonna Give You Up" yazılı açılış ekranı gösteriyor (kullanıcının kendi eklediği). Hız/SEO açısından riskli, kullanıcıya soruldu.
+
 ## Açık İşler / Sıradaki Adımlar
 0. **AdSense için kalanlar (sırayla):** a) Sitede özgün yazılar olmalı, en az 10-15 tane (çalışma taktikleri, sınav rehberleri). b) Alan adı alınacak. c) Site ücretsiz bir yere yüklenecek (Netlify/Cloudflare Pages). d) Yer tutucular değiştirilecek (ALANADI, iletişim e-postası). e) Google Search Console'a site ve sitemap eklenecek. f) AdSense başvurusu yapılacak, verilen kod tüm sayfaların `<head>` kısmına, pub kimliği `ads.txt` dosyasına yazılacak. g) AdSense panelinde AB kullanıcıları için Google'ın çerez onay mesajı (Privacy & messaging) açılacak. Not: "Reklam alanı" kutuları ve boş PDF bölümü, başvurudan önce gizlenmeli ya da doldurulmalı. Topluluğa şikâyet ve moderasyon özelliği eklenmesi önerilir (kullanıcı içerikli siteler için AdSense kuralı).
 1. **Kasım 2026:** ÖSYM 2027 takvimi açıklanınca `sinavlar.js` güncellenecek.
