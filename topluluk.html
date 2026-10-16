@@ -9,13 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
   <!-- Site adı yazı tipi: Telma (Fontshare, ticari kullanım ücretsiz) -->
   <link href="https://api.fontshare.com/v2/css?f[]=telma@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=39">
-  <script src="tema.js?v=39"></script>
-  <script src="yukleme.js?v=39"></script>
-  <script src="secim.js?v=39"></script>
-  <script src="baslik.js?v=39"></script>
-  <script src="menu.js?v=39"></script>
-  <script src="bulut3d.js?v=39"></script>
+  <link rel="stylesheet" href="style.css?v=42">
+  <script src="tema.js?v=42"></script>
+  <script src="yukleme.js?v=42"></script>
+  <script src="secim.js?v=42"></script>
+  <script src="baslik.js?v=42"></script>
+  <script src="menu.js?v=42"></script>
+  <script src="bulut3d.js?v=42"></script>
   <!-- REKLAM: Google AdSense onaylanınca kodu buraya eklenecek -->
 </head>
 <body>
@@ -82,7 +82,7 @@
 
     <!-- GİRİŞ / KAYIT -->
     <!-- Giriş / kayıt kartı: Uiverse.io login kartından uyarlandı -->
-    <div class="hesap-kart" id="giris-alani">
+    <div class="hesap-kart" id="giris-alani" hidden>
       <div class="hesap-kart-ic">
         <form id="form-giris" class="hk-form">
           <p class="hk-baslik">Giriş yap</p>
@@ -93,7 +93,9 @@
           <div class="hk-alan">
             <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
             <input type="password" id="giris-sifre" class="hk-girdi" placeholder="Şifre" aria-label="Şifre" required autocomplete="current-password">
+            <button type="button" class="sifre-goz" aria-label="Şifreyi göster" title="Şifreyi göster">👁️</button>
           </div>
+          <button type="button" class="hk-link sekme" data-mod="unuttum">Şifremi unuttum</button>
           <div class="hk-butonlar">
             <button type="submit" class="hk-buton">Giriş yap</button>
             <button type="button" class="hk-buton ikincil sekme" data-mod="kayit">Hesap aç</button>
@@ -112,25 +114,117 @@
           </div>
           <div class="hk-alan">
             <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
-            <input type="password" id="kayit-sifre" class="hk-girdi" placeholder="Şifre (en az 6 karakter)" aria-label="Şifre" required minlength="6" autocomplete="new-password">
+            <input type="password" id="kayit-sifre" class="hk-girdi" placeholder="Şifre (en az 6 karakter)" aria-label="Şifre (en az 6 karakter)" required minlength="6" autocomplete="new-password">
+            <button type="button" class="sifre-goz" aria-label="Şifreyi göster" title="Şifreyi göster">👁️</button>
           </div>
-          <p class="kayit-onay">Hesap açarak <a href="kullanim-kosullari.html" target="_blank">Kullanım Koşulları</a>'nı ve <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a>'nı kabul etmiş olursun.</p>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+            <input type="password" id="kayit-sifre2" class="hk-girdi" placeholder="Şifre (tekrar)" aria-label="Şifre (tekrar)" required minlength="6" autocomplete="new-password">
+            <button type="button" class="sifre-goz" aria-label="Şifreyi göster" title="Şifreyi göster">👁️</button>
+          </div>
+          <label class="kayit-onay onay-kutu"><input type="checkbox" id="kayit-onay" required> <span><a href="kullanim-kosullari.html" target="_blank">Kullanım Koşulları</a>'nı ve <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a>'nı okudum, kabul ediyorum.</span></label>
           <div class="hk-butonlar">
             <button type="submit" class="hk-buton">Hesap aç</button>
             <button type="button" class="hk-buton ikincil sekme" data-mod="giris">Giriş yap</button>
           </div>
         </form>
 
+        <form id="form-unuttum" class="hk-form" hidden>
+          <p class="hk-baslik">Şifremi unuttum</p>
+          <p class="kayit-onay">E-postanı yaz, sana şifre yenileme linki gönderelim.</p>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"/></svg>
+            <input type="email" id="unuttum-eposta" class="hk-girdi" placeholder="E-posta" aria-label="E-posta" required autocomplete="email">
+          </div>
+          <div class="hk-butonlar">
+            <button type="submit" class="hk-buton">Link gönder</button>
+            <button type="button" class="hk-buton ikincil sekme" data-mod="giris">Geri dön</button>
+          </div>
+        </form>
+
+        <form id="form-yeni-sifre" class="hk-form" hidden>
+          <p class="hk-baslik">Yeni şifre belirle</p>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+            <input type="password" id="yeni-sifre" class="hk-girdi" placeholder="Yeni şifre (en az 6 karakter)" aria-label="Yeni şifre (en az 6 karakter)" required minlength="6" autocomplete="new-password">
+            <button type="button" class="sifre-goz" aria-label="Şifreyi göster" title="Şifreyi göster">👁️</button>
+          </div>
+          <div class="hk-alan">
+            <svg viewBox="0 0 16 16" class="hk-ikon" aria-hidden="true"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+            <input type="password" id="yeni-sifre2" class="hk-girdi" placeholder="Yeni şifre (tekrar)" aria-label="Yeni şifre (tekrar)" required minlength="6" autocomplete="new-password">
+            <button type="button" class="sifre-goz" aria-label="Şifreyi göster" title="Şifreyi göster">👁️</button>
+          </div>
+          <div class="hk-butonlar">
+            <button type="submit" class="hk-buton">Şifreyi kaydet</button>
+          </div>
+        </form>
+
         <p id="form-mesaj" class="form-mesaj"></p>
+        <button type="button" id="onay-tekrar" class="hk-link" hidden>📧 Onay mailini tekrar gönder</button>
       </div>
     </div>
 
-    <!-- SOHBET -->
-    <div id="sohbet-alani" hidden>
-      <div class="sohbet-ust">
-        <span id="hosgeldin"></span>
+    <!-- FORUM + SOHBET (forum herkese açık, yazmak için giriş gerekir) -->
+    <div class="sohbet-ust">
+      <span id="hosgeldin"></span>
+      <a href="profil.html" class="kucuk-buton" id="profilim-link" hidden>👤 Profilim</a>
+      <a href="moderasyon.html" class="kucuk-buton" id="mod-link" hidden>🛡️ Moderasyon</a>
+      <span id="misafir-not" hidden>
+        <button type="button" class="kucuk-buton giris-iste" data-mod="giris">Giriş yap</button>
+        <button type="button" class="kucuk-buton giris-iste" data-mod="kayit">Hesap aç</button>
+      </span>
+    </div>
+
+    <div class="filtreler ana-sekmeler">
+      <button class="ana-sekme aktif" data-sekme="forum">📋 Forum</button>
+      <button class="ana-sekme" data-sekme="sohbet">💬 Canlı sohbet</button>
+    </div>
+
+    <div id="forum-alani">
+      <div class="forum-arac">
+        <div class="hk-alan forum-ara">
+          <span aria-hidden="true">🔎</span>
+          <input type="search" id="forum-ara" class="hk-girdi" placeholder="Konularda ara..." aria-label="Konularda ara">
+        </div>
+        <select id="forum-sira" aria-label="Sıralama">
+          <option value="aktif">Son hareket</option>
+          <option value="yeni">En yeni</option>
+          <option value="populer">En beğenilen</option>
+          <option value="cevapsiz">Cevapsız</option>
+        </select>
+        <button type="button" class="ana-buton" id="yeni-konu-ac">✏️ Yeni konu</button>
       </div>
 
+      <div class="filtreler" id="kategori-filtre"></div>
+
+      <form class="kutu yeni-konu hk-form" id="form-konu" hidden>
+        <h2>✏️ Yeni konu aç</h2>
+        <select id="konu-kategori" aria-label="Kategori" required></select>
+        <div class="hk-alan">
+          <input type="text" id="konu-baslik" class="hk-girdi" placeholder="Başlık (ör: TYT matematikte netim 20'de takıldı)" aria-label="Başlık" required minlength="5" maxlength="120">
+        </div>
+        <div class="hk-alan">
+          <textarea id="konu-icerik" class="hk-girdi" rows="6" placeholder="Derdini anlat: ne denedin, nerede zorlanıyorsun?" aria-label="İçerik" required maxlength="5000"></textarea>
+        </div>
+        <p class="bicim-ipucu">**kalın**, *italik*, `kod` yazabilirsin; linkler otomatik çalışır.</p>
+        <div class="hk-butonlar">
+          <button type="submit" class="hk-buton">Konuyu aç</button>
+          <button type="button" class="hk-buton ikincil" id="yeni-konu-kapat">Vazgeç</button>
+        </div>
+        <p id="konu-mesaj" class="form-mesaj"></p>
+      </form>
+
+      <div id="konu-listesi" class="konu-listesi"></div>
+
+      <div class="sayfalama" id="sayfalama" hidden>
+        <button type="button" class="kucuk-buton" id="sayfa-geri">← Önceki</button>
+        <span id="sayfa-bilgi"></span>
+        <button type="button" class="kucuk-buton" id="sayfa-ileri">Sonraki →</button>
+      </div>
+    </div>
+
+    <!-- CANLI SOHBET -->
+    <div id="sohbet-alani" hidden>
       <div class="filtreler">
         <button class="oda aktif" data-oda="genel">🌤️ Genel</button>
         <button class="oda" data-oda="yks">🎓 YKS</button>
@@ -163,7 +257,9 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js"></script>
-  <script src="supabase-ayar.js?v=39"></script>
-  <script src="topluluk.js?v=39"></script>
+  <script src="supabase-ayar.js?v=42"></script>
+  <script src="hesap-ortak.js?v=42"></script>
+  <script src="topluluk.js?v=42"></script>
+  <script src="forum.js?v=42"></script>
 </body>
 </html>

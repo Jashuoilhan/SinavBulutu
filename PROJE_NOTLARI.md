@@ -2,6 +2,43 @@
 
 Bu dosya yaptığımız her şeyin kaydıdır. Claude her oturumda önce burayı okur, her işten sonra burayı günceller.
 
+## 🗺️ TOPLULUK → FORUM YOL HARİTASI (karar: 13.10.2026)
+Kullanıcı topluluk sayfasını sohbet odasından **foruma** çevirmek istiyor. Sırayı kendisi belirledi, bu sırayla gidilecek:
+1. **Hesap (ŞU AN):** şifremi unuttum + yeni şifre belirleme, onay mailini tekrar gönder, şifre göster/gizle + şifre tekrar, kayıtta koşulları kabul kutusu, profil sayfası (hedef sınav, hakkında, avatar, katılım tarihi), kullanıcı adı değiştirme (eski mesajlarda da güncellensin), hesabı silme (KVKK).
+2. **Forum temeli:** kategoriler, konular + cevaplar tabloları, konu listesi, konu sayfası, yeni konu formu, düzenle/sil, sayfalama, beğeni, en iyi cevap, arama/sıralama. Canlı sohbet kalsın mı kararı burada verilecek (öneri: küçük "Sohbet" sekmesi olarak kalsın).
+3. **Düzen:** moderatör/yönetici rolü, şikâyet et, spam sınırı, engelleme, `alert()` yerine düzgün hata mesajları.
+4. **Ekstralar:** bildirimler, resim yükleme / gerçek profil fotoğrafı, biçimlendirme (link, kalın).
+
+**1. adım yapıldı (13.10.2026), kod hazır, KULLANICININ TEST ETMESİ BEKLENİYOR:**
+- `supabase-hesap.sql` (YENİ, kullanıcı SQL Editor'de BİR KERE çalıştıracak): profile `avatar`/`hedef_sinav`/`hakkinda` alanları, kullanıcı adı biçim kuralı + büyük/küçük harf duyarsız benzersizlik, kendi profilini düzenleme izni, ad değişince eski mesajlardaki adı güncelleyen trigger, `hesabimi_sil()` fonksiyonu.
+- `hesap-ortak.js` (YENİ): `Hesap.turkce()` hata çevirisi, `Hesap.AD_KURALI`, şifre kutularındaki 👁️ göster/gizle.
+- `topluluk.html/js`: şifremi unuttum formu, mail linkinden gelince "yeni şifre belirle" formu (`PASSWORD_RECOVERY`), onay mailini tekrar gönder butonu, kayıtta şifre tekrar + zorunlu koşul kutusu, kayıtlı e-postayla tekrar kayıt uyarısı, sohbette kullanıcı adları profile link, "👤 Profilim" butonu. `onAuthStateChange` içindeki işler `setTimeout` ile erteleniyor (Supabase kilitlenme sorunu).
+- `profil.html/js` (YENİ): `profil.html?ad=X` herkese açık profil (avatar, hedef sınav, katılım tarihi, mesaj sayısı, hakkında); kendi profilinde düzenleme (16 emoji avatar), şifre değiştirme, hesabı silme (kullanıcı adını yazarak onay).
+- `menu.js`: girişliyken sağ üstte "Hesap aç" → "Profilim". Blog alt klasöründe "Çıkış yap" linkinin `../` önekini kaybetme hatası düzeltildi.
+- Stil `style.css` sonunda "Hesap" ve "Profil sayfası" başlıklarında. Sürüm etiketi `?v=40`.
+- ⏸️ **ERTELENDİ (13.10.2026):** Kullanıcının şu an Supabase erişimi yok. "Supabase'e eriştim" dediğinde aşağıdaki adımlar + `supabase-forum.sql` hatırlatılacak (Claude hafızasında da kayıtlı).
+- **Kullanıcının yapacakları:** a) `supabase-hesap.sql` çalıştır, SONRA `supabase-forum.sql`. b) Supabase > Authentication > URL Configuration > Redirect URLs'e `http://localhost:8000/**` ve `http://localhost:8080/**` ekle (yoksa şifre yenileme/onay linkleri yanlış yere gider; alan adı alınınca o da eklenecek). c) Test: kayıt, onay maili, giriş, şifremi unuttum, profil düzenleme, ad değiştirme, hesap silme (deneme hesabıyla!).
+
+**2. adım (forum temeli) yapıldı (13.10.2026), kod hazır, veritabanı kurulumu ve test BEKLİYOR:**
+- Karar: forum ana yapı, canlı sohbet "💬 Canlı sohbet" sekmesinde kaldı (Claude'un önerisi, kullanıcı itiraz etmezse böyle kalır).
+- `supabase-forum.sql` (YENİ): `kategoriler` (genel, yks, kpss, ales, lgs, taktik; yenisi tabloya satır eklenerek), `konular`, `cevaplar`, `begeniler` tabloları; yazanı sunucu doldurur; cevap/beğeni sayaçları trigger ile; `en_iyi_cevap_sec()` sadece konu sahibi; ad değişince forum yazıları da güncellenir; sayaç alanlarına üye elle dokunamaz (sütun bazlı izin).
+- `topluluk.html/js`: forum herkese açık (girişsiz okunur), giriş kartı sadece istenince açılır (`girisIste()`), Forum / Canlı sohbet sekmeleri, misafire "Giriş yap / Hesap aç" butonları. Oturum değişince `oturum-degisti` olayı gönderilir.
+- `forum.js` (YENİ): kategori filtresi (`?kategori=` destekli), arama (başlık + içerik), sıralama (son hareket / en yeni / en beğenilen / cevapsız), 15'lik sayfalama, yeni konu formu.
+- `konu.html/js` (YENİ): `konu.html?id=N`; konu + cevaplar (20'şer "daha fazla"), beğeni, en iyi cevap (konu sahibi seçer, ✅ Çözüldü etiketi), kendi yazısını düzenle/sil, avatarlar.
+- Tablolar yokken sayfalar "Forum henüz kurulmadı" gösteriyor (`Hesap.tabloYok`). Stil `style.css` sonunda "Forum" başlıklarında.
+**3. ve 4. adım yapıldı (13.10.2026), kod hazır, veritabanı kurulumu ve test BEKLİYOR.** Kullanıcı "db hariç tüm işler hazır olsun" dedi.
+- `supabase-duzen.sql` (YENİ): profile `rol` (uye/moderator/yonetici) ve `engel_bitis`; `yazma_kontrol` trigger'ı (engelli mi, 1 dakikada konu 2 / cevap 5 / sohbet 10 sınırı, kilitli konuya cevap yok); moderatör her yazıyı silebilir; `sikayetler` tablosu (sadece yetkili görür); `uye_engelle(hedef, gun)`, `konu_ayarla(konu, 'sabit'|'kilitli')`, `engelli_uyeler()`. Kendini yönetici yapma komutu dosyanın başında.
+- `supabase-ekstra.sql` (YENİ): `bildirimler` (konuna cevap, en iyi cevap, beğeni; canlı), profil fotoğrafı (`foto` sütunu + Storage `avatarlar` klasörü, 512 KB, herkes kendi klasörüne).
+- `hesap-ortak.js`: `Hesap.bildir` (alert yerine sağ altta kutu), `Hesap.onayla` (confirm yerine pencere), `Hesap.sikayetEt`, `Hesap.uyeEngelle`, `Hesap.bicimle` (**kalın**, *italik*, `kod`, otomatik link; HTML çalışmaz), `Hesap.avatar` (foto ya da emoji), `Hesap.bildirimleriBaslat` (sağ üstte 🔔 + panel), `Hesap.rolum`. Sitede artık `alert`/`confirm` yok.
+- `konu.js`: 🚩 şikâyet, moderatör araçları (📌 sabitle, 🔒 kilitle, ⛔ engelle, 🛡️ sil), kilitli konuda cevap formu gizli, biçimlendirme. `forum.js`: sabit konular en üstte, 📌/🔒 etiketleri. `topluluk.js`: sohbette 🚩, moderatör her mesajı siler, 🛡️ Moderasyon linki.
+- `profil.html/js`: fotoğraf yükleme (256px webp'ye küçültülür), rol/engel rozetleri, başkasının profilinde şikâyet/engelle, "Açtığı konular".
+- `moderasyon.html/js` (YENİ): açık / kapanan şikâyetler (içeriğe git, sil, yazanı engelle, kapat), engelli üyeler (engeli kaldır).
+- Sürüm etiketi `?v=41`. Tarayıcı testi: ortak parçalar (biçimlendirme, bildirim, şikâyet penceresi) geçici sayfada denendi, çalışıyor. Veritabanıyla HİÇBİR ŞEY denenmedi.
+- **Veritabanı dışı son işler (13.10.2026):** "🙈 Bu üyeyi gizle" (sadece tarayıcıda, `localStorage` "sb-gizlenenler"; konu listesi, konu sayfası ve sohbette gizli üyenin yazısı "Göster" düğmeli kapalı kutu; profilde "Gizlediğim üyeler" listesi). Telefonda girişliyken sağ üstte 👤 (Profilim) görünüyor (`menu.js` → `.profilim`). Telefon (390px iframe) ve koyu tema ekran görüntüleriyle kontrol edildi, taşma yok. Sürüm etiketi `?v=42`.
+- ✅ **Veritabanı dışında yol haritasında yapılacak iş kalmadı.** Kalanlar Supabase'e bağlı: 4 SQL dosyası, kendini yönetici yapma, Redirect URLs, uçtan uca test. Ayrıca alan adı gelince: Türkçe mail şablonları + kendi SMTP (Açık İşler 4).
+- İleride (istenirse): yazılara resim ekleme (Storage), e-postayla bildirim.
+- Test ipucu: headless Edge'de `--window-size=390` sayfayı kesik gösteriyor; telefon görünümü için 390px iframe'li geçici sayfa + `--user-data-dir` (scratchpad) kullan.
+
 ## 📍 KALDIĞIMIZ YER (son oturum: 11.10.2026 akşam, arayüz/animasyon + mobil oturumu)
 Kullanıcı "bitiriyoruz" dedi. Döndüğünde buradan devam edilecek.
 
@@ -76,6 +113,7 @@ Kullanıcı "bitiriyoruz" dedi. Döndüğünde buradan devam edilecek.
 - Supabase JS sürümü 2.57.4'e yükseltildi (yeni "publishable" anahtar için).
 - ✅ `supabase-izinler.sql` çalıştırılmış: 2026-10-11 testinde `mesajlar` ve `profiller` tabloları 200 döndü (izin sorunu çözüldü, tablolar boş).
 - **KARAR (2026-10-11):** Şimdilik veritabanı olarak Supabase (PostgreSQL) ile çalışılacak. İleride MSSQL ya da MySQL'e geçilecek. O zamana kadar her şey Supabase üzerinden yapılacak.
+- **KARAR GÜNCELLENDİ (2026-10-12):** MySQL'e geçilmeyecek, Supabase'te kalınacak. Kullanıcının iki gerekçesi vardı: 1) bir firmaya bağlı kalmamak, 2) üyelik maillerinin Supabase'ten değil kendi sitesinden gitmesi. Bağımlılık düşük (altında düz PostgreSQL var, dışa aktarılabiliyor, Supabase açık kaynak ve kendi sunucuna kurulabiliyor). Mail sorunu veritabanından bağımsız, Custom SMTP ile çözülecek (Açık İşler 4).
 - Kullanıcı Supabase menüsünde Project Settings'i bulmakta zorlandı.
 - Üst menünün sağ üstüne **Giriş yap** (beyaz çerçeveli) ve **Hesap aç** (turuncu) butonları eklendi. Üç sayfada da var, ikisi de `topluluk.html` sayfasına gidiyor. `?mod=kayit` ile gelindiğinde `topluluk.js` direkt kayıt sekmesini açıyor. Stil `style.css` içinde `.hesap-butonlari` altında.
 - ✅ Örnek test hesabı API ile açıldı: kullanıcı adı `ornek_hesap`, e-posta: eski adres (artık kullanılmıyor, hesap silinecek), şifre `Bulut2026!` (sadece test için). `profiller` tablosuna otomatik kayıt düştü, yani tetikleyici çalışıyor. E-posta onayı bekleniyor.
@@ -163,7 +201,7 @@ Ortak dosyalar (hepsi tüm sayfaların `<head>`'inde, `?v=34` sürüm etiketiyle
 
 #### Kaynaklar sayfası dolduruldu (2026-10-12)
 - `kaynaklar.html` baştan yazıldı: 22 resmi kaynak kartı, 4 bölüm (Genel, YKS, KPSS, ALES/DGS) + filtre butonları (`kaynaklar.js`), "Kaynakları nasıl kullanmalısın?" ipuçları, "Sınav Bulutu PDF'leri" bölümü (boş, kendi PDF'lerimiz gelecek). Stil `style.css` sonunda "Kaynaklar sayfası" altında.
-- Tüm linkler 12.10.2026'da kontrol edildi (200). Tek istisna: kariyerkapisi.gov.tr bu bilgisayardan cevap vermedi, link elle kontrol edilmeli.
+- Tüm linkler 12.10.2026'da kontrol edildi (200). Kariyer Kapısı linki www.'suz olmalı (www.kariyerkapisi.gov.tr DNS'te yok), https://kariyerkapisi.gov.tr olarak düzeltildi.
 - PDF olarak doğrudan ÖSYM dosyalarına link verildi (2026 KPSS kılavuzları, yasaklı/izinli eşya listesi) + Anayasa (mevzuat.gov.tr). PDF'ler siteye KOPYALANMADI, sadece link.
 - **Tarih düzeltmesi:** ÖSYM takvimine göre 2026-KPSS Ortaöğretim 25.10.2026'da. `sinavlar.js` içinde 2028 tahmini yerine bu resmi tarih girildi. (2026 KPSS Lisans 06.09 ve Önlisans 04.10 yapıldı, bir sonraki 2028 tahmini doğru.)
 - Tüm sayfalarda önbellek sürümü `?v=36` yapıldı.
@@ -191,7 +229,7 @@ Ortak dosyalar (hepsi tüm sayfaların `<head>`'inde, `?v=34` sürüm etiketiyle
 1. **Kasım 2026:** ÖSYM 2027 takvimi açıklanınca `sinavlar.js` güncellenecek.
 2. **ŞU AN:** Supabase kurulumu ve izinler tamam. Sırada `topluluk.html` üzerinden gerçek kayıt + e-posta onayı + mesaj gönderme testi var. İleride eklenebilecekler: spam sınırı, moderatör/yönetici, profil fotoğrafı.
 3. **Faz 3, Yayına alma ve reklam:** alan adı (.com veya .com.tr) alınacak, ücretsiz hosting (Netlify, Cloudflare Pages ya da GitHub Pages) kullanılacak, Gizlilik Politikası ve Hakkımızda sayfaları eklenecek, sonra Google AdSense başvurusu yapılacak.
-4. **İleride veritabanı geçişi:** Supabase'den MSSQL ya da MySQL'e geçilecek (hangisi olacağı henüz belli değil). Geçiş sırasında şunlar da değişecek: Supabase'in hazır üyelik sistemi (Auth), canlı sohbet (Realtime) ve güvenlik kuralları (RLS). Bu yüzden ayrıca bir sunucu (backend) yazmak gerekecek. `topluluk.js` yeniden düzenlenecek.
+4. **Üyelik maillerini kendi alan adından göndermek (alan adı alınınca):** Resend/Brevo gibi ücretsiz bir mail servisine alan adı bağlanacak (DNS kayıtları). Supabase > Authentication > Emails > SMTP Settings kısmına servis bilgileri girilecek, gönderen `noreply@ALANADI` olacak. Mail şablonları Türkçeleştirilecek.
 5. **İçerik:** AdSense'in onaylaması için siteye özgün yazılar eklenmeli (çalışma taktikleri, sınav bilgileri vb.).
 7. **Puan hesaplayıcı:** Her yıl ÖSYM sonuçları açıklanınca `puan-verileri.js` güncellenecek (KPSS ortalama/standart sapma). Ortaöğretim ve önlisans için güncel veri eksik.
 6. **PDF uyarısı:** başkalarının telifli PDF'leri (yayınevi kitapları vb.) siteye yüklenmeyecek. Yalnızca kendi hazırladıklarımız ve resmi linkler kullanılacak.

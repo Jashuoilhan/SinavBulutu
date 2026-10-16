@@ -19,10 +19,22 @@
     const giris = document.querySelector(".hesap-giris");
     const kayit = document.querySelector(".hesap-kayit");
     if (!giris) return;
+    // Alt klasördeki sayfalarda (blog/) linkler "../" ile başlar; o ön eki koru
+    if (giris.dataset.kok === undefined) {
+      giris.dataset.kok = giris.getAttribute("href").replace(/topluluk\.html.*$/, "");
+    }
+    const kok = giris.dataset.kok;
     giris.textContent = girisli ? "Çıkış yap" : "Giriş yap";
-    giris.href = girisli ? "topluluk.html?cikis=1" : "topluluk.html?mod=giris";
+    giris.href = kok + (girisli ? "topluluk.html?cikis=1" : "topluluk.html?mod=giris");
     giris.classList.toggle("cikis", girisli);
-    if (kayit) kayit.hidden = girisli;
+    // Girişliyken "Hesap aç" yerine "Profilim"
+    if (kayit) {
+      // Telefonda sadece 👤 görünür (yazı CSS ile gizlenir)
+      kayit.innerHTML = girisli ? '👤<span class="masaustu-yazi"> Profilim</span>' : "Hesap aç";
+      kayit.classList.toggle("profilim", girisli);
+      kayit.setAttribute("aria-label", girisli ? "Profilim" : "Hesap aç");
+      kayit.href = kok + (girisli ? "profil.html" : "topluluk.html?mod=kayit");
+    }
   }
   // topluluk.js oturum değişince bunu çağırır
   window.HesapDurumu = { ayarla: hesapButonlariniAyarla };
